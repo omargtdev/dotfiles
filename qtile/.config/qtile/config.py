@@ -70,15 +70,21 @@ keys = [
     Key([mod, alt], "minus", lazy.spawn("pamixer --decrease 5")),
     Key([mod, alt], "plus", lazy.spawn("pamixer --increase 5")),
     Key([mod, alt], "m", lazy.spawn("pamixer --toggle-mute")),
+
     # Screenshoot 
     Key([], "Print", lazy.spawn("flameshot gui")),
+
+    # Redshift (set brightness)
+    Key([mod], "r", lazy.spawn("redshift -O 2400")),
+    Key([mod, "shift"], "r", lazy.spawn("redshift -x")),
+
 ]
 
 groups = [
   Group("", matches=[Match(wm_class=["firefox"])]),
   Group(""),
-  Group(""),
-  Group("ﭮ", matches=[Match(wm_class=["discord"])]),
+  Group(""),
+  Group("", matches=[Match(wm_class=["discord"])]),
   Group("", spawn="spotify", layout="max"),
   Group("", matches=[Match(wm_class=["Thunar", "thunar"])]),
   Group("", matches=[Match(wm_class=["geeqie"])])
@@ -123,7 +129,7 @@ layouts = [
 widget_defaults = dict(
     font='UbuntuMono Nerd Font Bold',
     fontsize=14,
-    padding=3,
+    padding=1,
 )
 extension_defaults = widget_defaults.copy()
 
@@ -148,10 +154,9 @@ screens = [
         top=bar.Bar(
             [
                 widget.GroupBox(
-                  font="mononoki NF",
                   inactive="787878",
                   borderwidth=1,
-                  fontsize=25,
+                  fontsize=22,
                   highlight_method="block",
                   urgent_alert_method="block",
                   padding=10,
@@ -160,40 +165,40 @@ screens = [
                   urgent_border="ff4444",
                   disable_drag=True
                 ),
-                widget.WindowName(
-                  padding=10
-                ),
-                powerline("d79623", None),
-                icon(" ", "d79623"),
+                widget.WindowName(),
+                powerline("1d2fa2", None),
+                icon(" ", "1d2fa2"),
                 widget.CheckUpdates(
-                  background="d79623",
+                  background="1d2fa2",
                   display_format="{updates}",
                   no_update_string='0',
-                  custom_command="checkupdates"	
+                  custom_command="checkupdates",
+		  padding=5
                 ),
-                powerline("3239a6","d79623"),
-                icon(" ", "3239a6"),
+                powerline("399f9d","1d2fa2"),
+                icon(" ", "399f9d"),
                 widget.Net(
-                  background="3239a6",
+                  background="399f9d",
                   interface="enp1s0",
+		  padding=5
                 ),
-                powerline("399f9d", "3239a6"),
-                icon(" ", "399f9d"),
-                        widget.Clock(
+                powerline("bf8300", "399f9d"),
+                icon(" ", "bf8300"),
+                widget.Clock(
                   format='%d/%m/%Y - %H:%M ',
-                  background="399f9d"
+                  background="bf8300",
                 ),
-                powerline("a5a241", "399f9d"),
+                powerline("4d9d3d", "bf8300"),
                 widget.CurrentLayoutIcon(
-                  background="a5a241",
+                  background="4d9d3d",
                   scale=0.7
                 ),
-                        widget.CurrentLayout(
-                  background="a5a241",
+                widget.CurrentLayout(
+                  background="4d9d3d",
                   padding=5,
                 ),
-                powerline(bg="a5a241"),
-                        widget.Systray(
+                powerline(bg="4d9d3d"),
+                widget.Systray(
                  padding=5,
                 ),
                 widget.Spacer(length=10), 

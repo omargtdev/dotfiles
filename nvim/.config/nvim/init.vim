@@ -1,3 +1,5 @@
-set number
-set relativenumber
-syntax on
+
+" Settings
+source $HOME/.config/nvim/settings.vim
+
+colorscheme industry
