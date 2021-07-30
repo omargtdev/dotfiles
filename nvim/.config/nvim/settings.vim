@@ -26,3 +26,6 @@ set incsearch " Incremental search that shows partial matches
 " TEXT RENDERING
 syntax on " hability syntax
 set wrap " enable line wrapping
+
+" time of update
+set updatetime=100
