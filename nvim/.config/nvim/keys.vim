@@ -34,9 +34,20 @@ xnoremap J :move '>+1<CR>gv-gv
 
 " TAB in general mode will move to next buffer
 nnoremap <TAB> :bnext<CR>
-" SHIFT-TAB will go to prev buffer
+" SHIF-TAB will go to prev buffer
 nnoremap <S-TAB> :bprevious<CR>
+
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call <SID>show_documentation()<CR>
 
 " nerdtree
 nnoremap <leader>n :NERDTreeFocus<CR>
 
+" easymotion. search fast
+nmap <leader>s <Plug>(easymotion-s2)

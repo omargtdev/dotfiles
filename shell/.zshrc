@@ -25,13 +25,14 @@ alias offarch='shutdown -h now'
 alias nv='nvim'
 alias v='vim'
 alias dotfiles='~/.dotfiles'
+alias pseint='~/Programs/pseint/pseint'
 
 
 # Colors
 typeset -A ZSH_HIGHLIGHT_STYLES
-ZSH_HIGHLIGHT_STYLES[suffix-alias]='fg=magenta'
-ZSH_HIGHLIGHT_STYLES[precommand]='fg=magenta'
-ZSH_HIGHLIGHT_STYLES[reserved-word]='fg=magenta'
+ZSH_HIGHLIGHT_STYLES[suffix-alias]='fg=#FF69B4'
+ZSH_HIGHLIGHT_STYLES[precommand]='fg=#FF69B4'
+ZSH_HIGHLIGHT_STYLES[reserved-word]='fg=#FF69B4'
 ZSH_HIGHLIGHT_STYLES[unknown-token]='fg=red'
 ZSH_HIGHLIGHT_STYLES[redirection]='fg=cyan'
 ZSH_HIGHLIGHT_STYLES[commandseparator]='fg=cyan'

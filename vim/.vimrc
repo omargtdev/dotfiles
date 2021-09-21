@@ -1,6 +1,9 @@
 " settings (neovim)
 source $HOME/.config/nvim/settings.vim
 
+" statusmode
+set showmode
+
 " Clear status line when vimrc is reloaded.
 set statusline=
 
@@ -16,4 +19,4 @@ set statusline+=row:\ %l\ col:\ %c\ percent:\ %p%%
 " Show the status on the second to last line.
 set laststatus=2
 
-colorscheme industry
+colorscheme elflord

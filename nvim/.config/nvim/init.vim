@@ -1,4 +1,3 @@
-
 " Settings
 source $HOME/.config/nvim/settings.vim
 
@@ -15,3 +14,4 @@ source $HOME/.config/nvim/keys.vim
 " Plugins config
 source $HOME/.config/nvim/plug-config/airline.vim
 source $HOME/.config/nvim/plug-config/coc.vim
+source $HOME/.config/nvim/plug-config/identline.vim
