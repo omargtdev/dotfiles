@@ -5,34 +5,26 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# -f -> Verify if is a type file 
+source ~/.powerlevel10k/powerlevel10k.zsh-theme
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-# Plugins 
+# Aliases
 
-# https://github.com/romkatv/powerlevel10k
-powerlevel10k=~/.powerlevel10k/powerlevel10k.zsh-theme
-# zsh-syntax-highlighting package
-syntax=/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-# zsh-autosuggestions package
-autosuggestions=/usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-
-# Sourced powerlevel10k theme
-[[ -f $powerlevel10k ]] && source $powerlevel10k
-
-# Alias
-alias ls='ls --color=auto'
-alias offarch='shutdown -h now'
-alias nv='nvim'
-alias v='vim'
-alias dotfiles='~/.dotfiles'
-alias pseint='~/Programs/pseint/pseint'
-
+alias grep='grep --color=auto'
+alias cat='bat --style=plain --paging=never'
+alias ls='exa --group-directories-first'
+alias tree='exa -T'
+alias v='nvim'
+alias dotfiles='cd $HOME/.dotfiles'
+alias archoff='shutdown -h now'
 
 # Colors
+
 typeset -A ZSH_HIGHLIGHT_STYLES
-ZSH_HIGHLIGHT_STYLES[suffix-alias]='fg=#FF69B4'
-ZSH_HIGHLIGHT_STYLES[precommand]='fg=#FF69B4'
-ZSH_HIGHLIGHT_STYLES[reserved-word]='fg=#FF69B4'
+ZSH_HIGHLIGHT_STYLES[suffix-alias]='fg=magenta'
+ZSH_HIGHLIGHT_STYLES[precommand]='fg=magenta'
+ZSH_HIGHLIGHT_STYLES[reserved-word]='fg=magenta'
 ZSH_HIGHLIGHT_STYLES[unknown-token]='fg=red'
 ZSH_HIGHLIGHT_STYLES[redirection]='fg=cyan'
 ZSH_HIGHLIGHT_STYLES[commandseparator]='fg=cyan'
@@ -40,12 +32,9 @@ ZSH_HIGHLIGHT_STYLES[single-hyphen-option]='fg=blue'
 ZSH_HIGHLIGHT_STYLES[double-hyphen-option]='fg=blue'
 ZSH_HIGHLIGHT_STYLES[path]='fg=blue'
 
-# History
-HISTSIZE=10000
-SAVEHIST=10000
-HISTFILE=~/.cache/zsh/history
 
 # Autocomplete
+
 setopt autocd
 zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list '' \
@@ -55,46 +44,23 @@ zstyle ':completion:*' matcher-list '' \
 zmodload zsh/complist
 autoload -Uz compinit
 compinit
-_comp_options+=(globdots)	
 
-# vi mode
+# Vim keybindings
+
 bindkey -v
 export KEYTIMEOUT=1
 
-# Use vim keys in tab complete menu:
+# Vim keys in tab complete menu
+
 bindkey -M menuselect 'h' vi-backward-char
 bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
-bindkey -M menuselect '^[[Z' reverse-menu-complete # -> Research
-bindkey -v '^?' backward-delete-char # -> Research
-
-# Change cursor shape for different vim modes
-
-function zle-keymap-select() {
-    case $KEYMAP in
-        vicmd) echo -ne '\e[1 q';;      # block
-        viins|main) echo -ne '\e[5 q';; # beam
-    esac
-}
-zle -N zle-keymap-select
-
-# Start in insert mode
-
-zle-line-init() {
-    zle -K viins 
-    echo -ne "\e[5 q"
-}
-zle -N zle-line-init
-echo -ne '\e[5 q'
-
-# Sourced suggestions
-[[ -f $autosuggestions ]] && source $autosuggestions
-
-# Sourced syntax
-[[ -f $syntax ]] && source $syntax
+bindkey -M menuselect '^[[Z' reverse-menu-complete
+bindkey -v '^?' backward-delete-char
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-
+# for qt gui themes
+export QT_STYLE_OVERRIDE=kvantum

@@ -1,6 +1,3 @@
-" settings (neovim)
-source $HOME/.config/nvim/settings.vim
-
 " statusmode
 set showmode
 
@@ -19,4 +16,5 @@ set statusline+=row:\ %l\ col:\ %c\ percent:\ %p%%
 " Show the status on the second to last line.
 set laststatus=2
 
+set clipboard=unnamedplus
 colorscheme elflord
