@@ -68,7 +68,7 @@ local function run_once(cmd_arr)
     end
 end
 
-run_once({ "unclutter -root", "picom", "volumeicon", "setxkbmap latam" }) -- comma-separated entries
+run_once({ "unclutter -root", "picom", "volumeicon", "setxkbmap latam", "flameshot" }) -- comma-separated entries
 
 -- This function implements the XDG autostart specification
 --[[
@@ -271,7 +271,7 @@ globalkeys = mytable.join(
               {description = "destroy all notifications", group = "hotkeys"}),
     -- Take a screenshot
     -- https://github.com/lcpz/dots/blob/master/bin/screenshot
-    awful.key({ altkey }, "p", function() os.execute("screenshot") end,
+    awful.key({ }, "Print", function() os.execute("flameshot gui") end,
               {description = "take a screenshot", group = "hotkeys"}),
 
     -- X screen locker
