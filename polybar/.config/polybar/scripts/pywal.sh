@@ -2,7 +2,7 @@
 
 # Color files
 PFILE="$HOME/.config/polybar/colors.ini"
-RFILE="$HOME/.config/polybar/scripts/rofi/colors.rasi"
+RFILE="$HOME/.config/rofi/colors.rasi"
 
 # Get colors
 pywal_get() {
