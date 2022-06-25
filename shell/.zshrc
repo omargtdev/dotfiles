@@ -1,3 +1,5 @@
+export PATH="$HOME/.local/bin:$PATH"
+export NVIM_CONFIG="$HOME/.config/nvim"
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -6,14 +8,22 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 source ~/.powerlevel10k/powerlevel10k.zsh-theme
+
+# Plugins
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# Download from ohmyzsh sudo plugin
+# source /usr/share/zsh/plugins/zsh-sudo/zsh-sudo.zsh
 
 # Aliases
 
 alias grep='grep --color=auto'
 alias cat='bat --style=plain --paging=never'
-alias ls='exa --group-directories-first'
+alias megacat='bat'
+alias ls='exa --icons --group-directories-first'
+alias ll='exa --icons -lh --group-directories-first'
+alias la='exa --icons -a --group-directories-first'
+alias lla='exa --icons -lha --group-directories-first'
 alias tree='exa -T'
 alias v='nvim'
 alias dotfiles='cd $HOME/.dotfiles'
@@ -32,6 +42,19 @@ ZSH_HIGHLIGHT_STYLES[single-hyphen-option]='fg=blue'
 ZSH_HIGHLIGHT_STYLES[double-hyphen-option]='fg=blue'
 ZSH_HIGHLIGHT_STYLES[path]='fg=blue'
 
+# Man Colors
+# Set 'man' colors
+function man() {
+    env \
+    LESS_TERMCAP_mb=$'\e[01;31m' \
+    LESS_TERMCAP_md=$'\e[01;31m' \
+    LESS_TERMCAP_me=$'\e[0m' \
+    LESS_TERMCAP_se=$'\e[0m' \
+    LESS_TERMCAP_so=$'\e[01;44;33m' \
+    LESS_TERMCAP_ue=$'\e[0m' \
+    LESS_TERMCAP_us=$'\e[01;32m' \
+    man "$@"
+}
 
 # Autocomplete
 

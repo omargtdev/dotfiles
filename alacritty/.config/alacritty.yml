@@ -33,7 +33,7 @@ font:
     family: "MesloLGS NF"
   italic:
     family: "MesloLGS NF"
-  size: 10
+  size: 9
 
 window:
   padding:
