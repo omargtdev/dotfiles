@@ -1,5 +1,2 @@
 # kvantum theme in all qt apps
 export QT_STYLE_OVERRIDE=kvantum
-# lock for inactivity
-xautolock -time 10 -locker slock &
-

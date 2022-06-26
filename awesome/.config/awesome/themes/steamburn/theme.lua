@@ -18,14 +18,14 @@ local theme                                     = {}
 theme.zenburn_dir                               = require("awful.util").get_themes_dir() .. "zenburn"
 theme.dir                                       = os.getenv("HOME") .. "/.config/awesome/themes/steamburn"
 theme.wallpaper                                 = theme.dir .. "/wall.png"
-theme.font                                      = "Hack Nerd Font 9.5"
+theme.font                                      = "Terminus 10.5"
 theme.fg_normal                                 = "#e2ccb0"
 theme.fg_focus                                  = "#d88166"
 theme.fg_urgent                                 = "#CC9393"
 theme.bg_normal                                 = "#140c0b"
 theme.bg_focus                                  = "#140c0b"
 theme.bg_urgent                                 = "#2a1f1e"
-theme.border_width                              = dpi(0)
+theme.border_width                              = dpi(1)
 theme.border_normal                             = "#302627"
 theme.border_focus                              = "#c2745b"
 theme.border_marked                             = "#CC9393"
@@ -34,7 +34,7 @@ theme.tasklist_bg_focus                         = "#140c0b"
 theme.tasklist_fg_focus                         = "#d88166"
 theme.taglist_squares_sel                       = theme.dir .. "/icons/square_sel.png"
 theme.taglist_squares_unsel                     = theme.dir .. "/icons/square_unsel.png"
-theme.menu_height                               = dpi(20)
+theme.menu_height                               = dpi(16)
 theme.menu_width                                = dpi(140)
 theme.awesome_icon                              = theme.dir .."/icons/awesome.png"
 theme.menu_submenu_icon                         = theme.dir .. "/icons/submenu.png"
@@ -52,7 +52,7 @@ theme.layout_txt_magnifier                      = "[M]"
 theme.layout_txt_floating                       = "[|]"
 theme.tasklist_plain_task_name                  = true
 theme.tasklist_disable_icon                     = true
-theme.useless_gap                               = dpi(5)
+theme.useless_gap                               = dpi(0)
 theme.titlebar_close_button_normal              = theme.zenburn_dir.."/titlebar/close_normal.png"
 theme.titlebar_close_button_focus               = theme.zenburn_dir.."/titlebar/close_focus.png"
 theme.titlebar_minimize_button_normal           = theme.zenburn_dir.."/titlebar/minimize_normal.png"
@@ -243,7 +243,7 @@ function theme.at_screen_connect(s)
     s.mytasklist = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, awful.util.tasklist_buttons)
 
     -- Create the wibox
-    s.mywibox = awful.wibar({ position = "top", screen = s, height = dpi(20) })
+    s.mywibox = awful.wibar({ position = "top", screen = s, height = dpi(18) })
 
     -- Add widgets to the wibox
     s.mywibox:setup {
@@ -261,19 +261,15 @@ function theme.at_screen_connect(s)
         s.mytasklist, -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
-            spr,
-            spr,
             wibox.widget.systray(),
             spr,
-            spr,
-	    spr,
             theme.mpd.widget,
             --theme.mail.widget,
             cpu.widget,
             mem.widget,
             bat.widget,
             net.widget,
-            --theme.volume.widget,
+            theme.volume.widget,
             mytextclock
         },
     }
