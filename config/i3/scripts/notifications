@@ -1,0 +1,12 @@
+#!/bin/bash
+
+is_paused=$(dunstctl is-paused)
+
+if $is_paused ; then
+	$(dunstctl set-paused false && dunstctl close-all)
+	$(dunstify "Notifications on")
+else
+	$(dunstify "Notifications off")
+	$(sleep 2)
+	$(dunstctl set-paused true)
+fi

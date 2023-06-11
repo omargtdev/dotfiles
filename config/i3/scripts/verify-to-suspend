@@ -1,0 +1,19 @@
+#!/bin/env bash
+
+IS_PLAYING=false
+SUSPEND_CMD="systemctl suspend"
+
+
+# Install playerctl to verify if is playing something (video, music, etc)
+if [ -x "$(command -v playerctl)" ]; then
+    PLAYER_STATUS=$(playerctl status)
+    if [[ "$PLAYER_STATUS" == "Playing" ]]; then
+        IS_PLAYING=true
+    fi
+fi
+
+# Exec
+if ! [ "$IS_PLAYING" = true ] ; then
+   exec $SUSPEND_CMD 
+fi
+

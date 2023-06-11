@@ -1,0 +1,10 @@
+#!/bin/bash
+
+actual_keyboard_layout=$(setxkbmap -query | grep layout | cut -d ":" -f 2 | xargs)
+
+if [ $actual_keyboard_layout = "us" ]; then
+	$(setxkbmap latam)
+else
+	$(setxkbmap us)
+fi
+

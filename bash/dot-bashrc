@@ -1,0 +1,39 @@
+# .bashrc
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+	. /etc/bashrc
+fi
+
+# User specific environment
+if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]
+then
+    PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+fi
+
+if ! [[ "$PATH" =~ "$HOME/.cargo/bin:" ]]
+then
+    PATH="$HOME/.cargo/bin:$PATH"
+fi
+
+# Aliases
+alias ls='exa --icons'
+alias ll='exa -l --icons'
+alias la='exa -a --icons'
+alias lla='exa -lla --icons'
+alias tree='exa -T --icons'
+alias cat='bat --paging=never --style=plain'
+
+alias reload='source $HOME/.bashrc'
+alias dotfiles='cd $HOME/.dotfiles'
+alias v='nvim'
+alias ctrlc="xclip -selection clipboard"
+alias ctrlv="xclip -selection clipboard -o"
+
+# Node version manager
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# Qt themes
+export QT_STYLE_OVERRIDE=kvantum

@@ -1,0 +1,7 @@
+# First to load, ignoring ~/.bash_login and ~/.profile if exist them
+# Only load in login and interactive shell
+
+# Load for login interactive shell too
+if [ -f ~/.bashrc ]; then
+    . ~/.bashrc
+fi

@@ -1,0 +1,429 @@
+####################
+# General Settings #
+####################
+
+# Mod4 => windows key
+# Mod1 => Alt key
+
+# set the mod key to the winkey:
+set $mod Mod4
+
+# font
+font pango: Hack Nerd Font 9
+
+# default i3 tiling mode:
+workspace_layout tabbed
+
+#border indicator on windows:
+new_window pixel 1
+
+# Set inner/outer gaps
+gaps inner 6
+gaps outer 3
+
+# No apply gaps for only one window
+smart_gaps on
+hide_edge_borders smart_no_gaps
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+##############
+# Appareance #
+##############
+
+# Define colors variables:
+set $darkbluetrans	#08052be6
+set $darkblue		#08052b
+set $lightblue		#5294e2
+set $urgentred		#e53935
+set $white		    #ffffff
+set $black		    #000000
+set $purple		    #e345ff
+set $darkgrey		#383c4a
+set $grey		    #b0b5bd
+set $mediumgrey		#8b8b8b
+set $yellowbrown	#e1b700
+
+# define colors for windows:
+#class		        	    border		bground		text		indicator	    child_border
+client.focused		    	$lightblue	$darkblue	$white		$mediumgrey	    $mediumgrey
+client.unfocused	    	$darkblue	$darkblue	$grey		$darkgrey	    $darkgrey
+client.focused_inactive		$darkblue	$darkblue	$grey		$black		    $black
+client.urgent		    	$urgentred	$urgentred	$white		$yellowbrown	$yellowbrown
+
+###############
+# System tray #
+###############
+
+# Network Manager
+exec --no-startup-id nm-applet
+
+# Volume
+#exec --no-startup-id volumeicon
+
+# Take screenshot
+exec --no-startup-id flameshot
+
+
+##############
+# Workspaces #
+##############
+
+# switch/iterate between workspaces
+bindsym $mod+Tab workspace next
+bindsym $mod+Shift+Tab workspace prev
+
+# switch to workspace
+bindsym $mod+1    workspace  $ws1
+bindsym $mod+2    workspace  $ws2
+bindsym $mod+3    workspace  $ws3
+bindsym $mod+4    workspace  $ws4
+bindsym $mod+5    workspace  $ws5
+bindsym $mod+6    workspace  $ws6
+bindsym $mod+7    workspace  $ws7
+bindsym $mod+8    workspace  $ws8
+bindsym $mod+9    workspace  $ws9
+bindsym $mod+0    workspace  $ws10
+
+# move focused container to workspace
+bindsym $mod+Shift+1    move container to workspace  $ws1
+bindsym $mod+Shift+2    move container to workspace  $ws2
+bindsym $mod+Shift+3    move container to workspace  $ws3
+bindsym $mod+Shift+4    move container to workspace  $ws4
+bindsym $mod+Shift+5    move container to workspace  $ws5
+bindsym $mod+Shift+6    move container to workspace  $ws6
+bindsym $mod+Shift+7    move container to workspace  $ws7
+bindsym $mod+Shift+8    move container to workspace  $ws8
+bindsym $mod+Shift+9    move container to workspace  $ws9
+bindsym $mod+Shift+0    move container to workspace  $ws10
+
+# Define names for default workspaces for which we configure key bindings later on.
+# We use variables to avoid repeating the names in multiple places.
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+##################
+# Apps/Workspace #
+##################
+
+# bind program to workspace and focus to them on startup:
+#assign [class="Alacritty"] $ws1
+
+assign [class="firefox"] $ws2
+
+assign [class="jetbrains-studio"] $ws3
+#assign [class="xfreerdp"] $ws3
+
+#assign [class="thunderbird"] $ws4
+
+assign [class="whatsapp-nativefier-d40211"] $ws5
+assign [class="discord"] $ws5
+
+assign [class="zoom"] $ws6
+
+#assign [class="Microsoft-edge"] $ws7
+
+# This is a special case
+for_window [class="Spotify"] move to workspace $ws8
+
+assign [class="Steam"] $ws9
+assign [class="dota2"] $ws10
+
+# automatic set focus new window if it opens on another workspace then the current:
+for_window [class=Alacritty] focus
+for_window [class=Navigator] focus
+
+##################
+# Floating rules #
+##################
+
+# set floating (nontiling) for apps needing it
+for_window [class="Yad" instance="yad"] floating enable
+for_window [class="Galculator" instance="galculator"] floating enable
+for_window [class="Blueberry.py" instance="blueberry.py"] floating enable
+for_window [window_role="About"] floating enable
+
+for_window [class="Steam"] floating enable
+for_window [class="dota2"] fullscreen enable
+
+# set floating (nontiling) for special apps
+for_window [class="Xsane" instance="xsane"] floating enable
+for_window [class="Pavucontrol" instance="pavucontrol"] floating enable
+
+# Set theme for Qt and GTK respectively
+for_window [class="qt5ct" instance="qt5ct"] floating enable
+for_window [class="Lxappearance" instance="lxappearance"] floating enable
+
+# set border of floating window
+for_window [class="urxvt"] border pixel 1
+
+# set position of floating window
+for_window [class=".*"] move position center
+
+##########
+# Layout #
+##########
+
+# Change focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# Move focused window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+
+# restart i3 inplace (preserves your layout/session, can be used to update i3)
+bindsym $mod+Shift+r restart
+
+# kill focused window
+bindsym $mod+q kill
+
+# split in horizontal orientation
+bindsym Mod1+h split h
+
+# split in vertical orientation
+bindsym Mod1+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+Shift+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+g layout tabbed
+bindsym $mod+e layout toggle split
+bindsym $mod+Shift+space floating toggle
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+#############
+# Utilities #
+#############
+
+# Lock the system
+bindsym $mod+Ctrl+l exec betterlockscreen -l blur
+
+# Change keyboard-layout
+bindsym $mod+Ctrl+k exec --no-startup-id ~/.config/i3/scripts/change-keyboard-layout
+
+# Enable/Disable notifications (Do not bother)
+bindsym $mod+n exec --no-startup-id ~/.config/i3/scripts/notifications
+
+#################
+# System control#
+#################
+
+# Backlight control
+bindsym XF86MonBrightnessUp exec --no-startup-id ~/.config/i3/scripts/changebrightness up
+bindsym XF86MonBrightnessDown exec --no-startup-id ~/.config/i3/scripts/changebrightness down
+
+# Kill notifications
+bindsym $mod+semicolon exec --no-startup-id dunstctl close
+bindsym $mod+Shift+semicolon exec --no-startup-id dunstctl close-all
+
+# Volume control
+#set $refresh_i3status killall -SIGUSR1 i3blocks
+#bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh_i3status
+#bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && $refresh_i3status
+#bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+#bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -q -D default sset Master 5%+ unmute
+bindsym XF86AudioLowerVolume exec --no-startup-id amixer -q -D default sset Master 5%- unmute
+bindsym XF86AudioMute exec --no-startup-id amixer -q -D default sset Master toggle
+
+
+# Media (video/audio) controller
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+
+############
+# Programs #
+############
+
+# Terminal
+bindsym $mod+Return exec alacritty
+
+# Browser
+bindsym $mod+b exec firefox
+
+# Screenshot
+bindsym Print exec flameshot gui 
+
+# Dmnenu
+bindsym $mod+d exec --no-startup-id "dmenu_run -nf '#BBBBBB' -nb '#222222' -sb '#005577' -sf '#EEEEEE' -fn 'monospace-10'"
+
+#######################
+# Displays (Monitors) #
+#######################
+
+# Active display - (TODO: Configure an wallpaper)
+bindsym Ctrl+F4 exec --no-startup-id xrandr --output eDP-1 --auto --primary --output HDMI-1 --auto --left-of eDP-1
+# Desactive display
+bindsym Ctrl+Shift+F4 exec --no-startup-id xrandr --output HDMI-1 --off
+
+# move focused workspace between monitors
+# greater (>) - less (<)
+bindsym $mod+greater move workspace to output right
+bindsym $mod+less move workspace to output left 
+
+# use workspaces on different displays:
+# where you have to replace VGA-0/HDMI-0 with the names for your displays
+# you can get from xrandr command
+#workspace $ws1 output VGA-0
+#workspace $ws2 output VGA-0
+#workspace $ws3 output HDMI-0
+#workspace $ws4 output HDMI-0
+#workspace $ws5 output HDMI-0
+
+##################################
+# Services/Applications on login #
+##################################
+
+# Set keyboard layout
+exec --no-startup-id setxkbmap us
+
+# Compositor
+exec_always --no-startup-id picom
+
+# set wallpaper
+exec --no-startup-id betterlockscreen -w
+#exec --no-startup-id feh --bg-scale ~/Pictures/Wallpapers/1.png
+
+# Auto suspend, ignoring the right and left top corners
+exec --no-startup-id xautolock -time 3 -locker "systemctl suspend" -detectsleep -corners '--00'
+# You can also use this script to verify if something is playing before to suspend instead of use corners
+# It requires playerctl installed
+#exec --no-startup-id xautolock -time 3 -locker "~/.config/i3/scripts/verify-to-suspend" -detectsleep
+
+# Desktop notifications
+#exec --no-startup-id dbus-launch dunst --config ~/.config/dunst/dunstrc
+# alternative if you installed aside with XFCE4:
+# exec --no-startup-id /usr/lib/xfce4/notifyd/xfce4-notifyd &
+
+# autotiling script
+# https://github.com/nwg-piotr/autotiling
+# `yay -S autotiling ;) (it is in AUR)
+exec_always --no-startup-id autotiling
+
+#######
+# Bar #
+#######
+
+bar {
+    # Bar style
+	status_command i3blocks -c ~/.config/i3/i3blocks.conf
+	#position top
+    # Set where show the tray (Primary monitor, external monitor, etc)
+	tray_output primary
+	tray_padding 2
+	# When strip_workspace_numbers is set to yes,
+	# any workspace that has a name of the form
+	# “[n][:][NAME]” will display only the name.
+	strip_workspace_numbers yes
+	colors {
+		separator          $purple
+		background         $darkgrey
+		statusline         $white
+#                          	border 		        bg		    txt		    indicator
+		focused_workspace	$mediumgrey	   	    $grey		$darkgrey	$purple
+		active_workspace	$lightblue      	$mediumgrey	$darkgrey	$purple
+		inactive_workspace	$darkgrey   		$darkgrey	$grey		$purple
+		urgent_workspace	$urgentred	    	$urgentred	$white		$purple
+	}
+}
+
+#########
+# Modes #
+#########
+
+# What follows here is optional and defines a mode that allows you to resize the gaps on the fly.
+# Press $mod1+Shift+g to enter the gap mode. Choose o or i for modifying outer/inner gaps. 
+# Press one of + / - (in-/decrement for current workspace) or 0 (remove gaps for current workspace).
+# If you also press Shift with these keys, the change will be global for all workspaces.
+set $mode_gaps Gaps: (o)uter, (i)nner, (r)eset default
+set $mode_gaps_outer Outer Gaps: m|l|0 (local), Shift + m|l|0 (global)
+set $mode_gaps_inner Inner Gaps: m|l|0 (local), Shift + m|l|0 (global)
+bindsym $mod+Shift+g mode "$mode_gaps"
+
+mode "$mode_gaps" {
+        bindsym o      mode "$mode_gaps_outer"
+        bindsym i      mode "$mode_gaps_inner"
+        bindsym r      gaps inner all set 6; gaps outer all set 3; mode "default"
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+mode "$mode_gaps_inner" {
+        bindsym m gaps inner current plus 5
+        bindsym l gaps inner current minus 5
+        bindsym 0 gaps inner current set 0
+
+        bindsym Shift+m gaps inner all plus 5
+        bindsym Shift+l gaps inner all minus 5
+        bindsym Shift+0     gaps inner all set 0
+
+        bindsym Return mode "$mode_gaps"
+        bindsym Escape mode "default"
+}
+mode "$mode_gaps_outer" {
+        bindsym m gaps outer current plus 5
+        bindsym l gaps outer current minus 5
+        bindsym 0     gaps outer current set 0
+
+        bindsym Shift+m gaps outer all plus 5
+        bindsym Shift+l gaps outer all minus 5
+        bindsym Shift+0     gaps outer all set 0
+
+        bindsym Return mode "$mode_gaps"
+        bindsym Escape mode "default"
+}
+
+# resize window (you can also use the mouse for that):
+mode "resize" {
+ #These bindings trigger as soon as you enter the resize mode
+        bindsym h resize shrink width 10 px or 10 ppt
+        bindsym j resize grow height 10 px or 10 ppt
+        bindsym k resize shrink height 10 px or 10 ppt
+        bindsym l resize grow width 10 px or 10 ppt
+
+# same bindings, but for the arrow keys
+	bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+# back to normal: Enter or Escape
+	bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+r mode "default"
+}
+bindsym $mod+r mode "resize"
+
+# TODO: Add powermenu mode
