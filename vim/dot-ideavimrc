@@ -1,0 +1,131 @@
+""" For creating files, I suggest the following shortcuts in IDE config
+" <A-d> -> Create directory/package
+" <A-c> -> Create class
+" <A-f> -> Create file
+
+""" General Settings
+let mapleader=" "
+set clipboard+=unnamed
+" set clipboard+=ideaput
+set scrolloff=8
+set number
+set relativenumber
+
+""" Plugin (easymotion)
+" Install plugins from marketplace
+"   AceJump
+"   IdeaVim-EasyMotion
+set easymotion
+nmap <leader><leader>s <Plug>(easymotion-s)
+
+""" Plugin (NERDTree)
+set NERDTree
+nnoremap <leader>n :NERDTree<CR>
+
+""" Plugin (Surround)
+" Normal Mode:
+"   Change surroundings:
+"       cs<existing><new> -> cs"' e.g. "hi" -> 'hi'
+"   Change surroundings tag:
+"       cst<tag> -> cst<h5> e.g. <h1>Hi</h1> -> <h5>Hi</h5>
+"   Delete surroundings:
+"       ds<value> -> ds" e.g. "hi" -> hi
+"   Delete surroundings tag:
+"       dst e.g. <h5>Hi<h5> -> Hi
+"   Surround text object:
+"       ys<pattern><value> -> ys2e" e.g. These are my words -> "These are" my words
+" Visual Mode:
+"   Set surroundings:
+"       S -> S<value> -> S" e.g. Some text selected -> "Some text selected"
+set surround
+
+""" Plugin (multiple-cursors)
+set multiple-cursors
+" Next/Init -> <A-n>
+" Skip -> <A-x>
+" Previous -> <A-p>
+
+""" Go to normal mode
+inoremap jk <Esc>
+
+""" Edit config file
+nnoremap \e :e ~/.ideavimrc<CR>
+nnoremap \r :action IdeaVim.ReloadVimRc.reload<CR>
+
+""" Distraction Mode
+nnoremap <C-f> :action ToggleDistractionFreeMode<CR>
+
+""" Idea Windows
+nnoremap <C-h> :action HideAllWindows<CR>
+nnoremap <C-t> :action ActivateTerminalToolWindow<CR>
+
+""" Navigation
+nnoremap <C--> :action SplitHorizontally<CR>
+nnoremap <C-\> :action SplitVertically<CR>
+nnoremap <C-=> :action Unsplit<CR>
+nnoremap <C-m> :action MoveEditorToOppositeTabGroup<CR>
+
+nnoremap <TAB> :action PreviousTab<CR>
+nnoremap <S-TAB> :action NextTab<CR>
+
+" nnoremap <Leader>en :action EditSourceInNewWindow<CR>
+
+nnoremap <leader>q :action CloseContent<CR>
+nnoremap <leader>Q :action CloseAllEditors<CR>
+
+""" Editing code
+set ideajoin
+set idearefactormode=keep
+
+vnoremap < <gv
+vnoremap > >gv
+
+nnoremap [[ :action MethodUp<CR>
+nnoremap ]] :action MethodDown<CR>
+
+nnoremap zc :action CollapseRegion<CR>
+nnoremap zo :action ExpandRegion<CR>
+nnoremap <leader>zc :action CollapseAllRegions<CR>
+nnoremap <leader>zo :action ExpandAllRegions<CR>
+
+nnoremap <leader>c :action CommentByLineComment<CR>
+vnoremap <leader>c :action CommentByBlockComment<CR>
+
+nnoremap <leader>r :action ReformatCode<CR>
+nnoremap <leader>R :action Refactorings.QuickListPopupAction<CR>
+nnoremap <leader>o :action OptimizeImports<CR>
+
+""" Search and Code Navigation
+set incsearch
+
+sethandler <S-f> n-v:ide i:vim
+nnoremap <leader>f :action GotoFile<CR>
+nnoremap <leader>a :action GotoAction<CR>
+nnoremap <leader>F :action RecentFiles<CR>
+nnoremap <leader>s :action FileStructurePopup<CR>
+nnoremap <leader>b :action ShowNavBar<CR>
+
+nnoremap gc :action GotoClass<CR>
+nnoremap gi :action GotoImplementation<CR>
+nnoremap gd :action GotoDeclaration<CR>
+nnoremap gp :action GotoSuperMethod<CR>
+nnoremap gt :action GotoTest<CR>
+nnoremap gb :action Back<CR>
+nnoremap gf :action Forward<CR>
+nnoremap ge :action GotoNextError<CR>
+nnoremap gE :action GotoPreviousError<CR>
+
+""" Running and Debugging
+nnoremap ,r :action Run<CR>
+nnoremap ,u :action Rerun<CR>
+nnoremap ,c :action RunClass<CR>
+nnoremap ,s :action Stop<CR>
+nnoremap ,C :action ChooseRunConfiguration<CR>
+
+nnoremap ,f :action RerunFailedTests<CR>
+nnoremap ,b :action ToggleLineBreakpoint<CR>
+
+nnoremap ,d :action Debug<CR>
+
+nnoremap ,R :action ActivateRunToolWindow<CR>
+nnoremap ,D :action ActivateDebugToolWindow<CR>
