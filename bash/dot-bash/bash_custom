@@ -1,0 +1,26 @@
+# Load custom or specific variables and/or add custom path to PATH variable
+
+# User specific environment
+if ! [[ "$PATH" =~ "$HOME/.local/bin" ]] then
+    PATH="$HOME/.local/bin:$PATH"
+fi                                                                 
+                                                                   
+if ! [[ "$PATH" =~ "$HOME/.cargo/bin:" ]] then                     
+    PATH="$HOME/.cargo/bin:$PATH"
+fi
+
+# Dotnet
+DOTNET_DIR="$HOME/.dotnet"
+if [[ -d "$DOTNET_DIR" ]]; then
+    if ! [[ "$PATH" =~ "$HOME/.dotnet" ]] then                     
+        PATH="$HOME/.dotnet:$PATH"
+    fi
+fi
+
+# Node version manager
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
+
+# Qt themes
+export QT_STYLE_OVERRIDE=kvantum

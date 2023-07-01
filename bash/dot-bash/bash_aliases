@@ -1,0 +1,31 @@
+# Install exa
+if [ -x "$(command -v exa)" ]; then
+    alias ls='exa --icons'
+    alias ll='exa -l --icons'
+    alias la='exa -a --icons'
+    alias lla='exa -lla --icons'
+    alias tree='exa -T --icons'
+else
+    alias ls='ls --color'
+    alias ll='ls --color -lh'
+    alias la='ls --color -a'
+    alias lla='ls --color -lha'
+fi
+
+# Install bat
+if [ -x "$(command -v bat)" ]; then
+    alias cat='bat --paging=never --style=plain'
+fi
+
+alias reload='source $HOME/.bashrc'
+alias dotfiles='cd $HOME/.dotfiles'
+
+# Install neovim
+if [ -x "$(command -v nvim)" ]; then
+    alias v='nvim'
+else
+    alias v='vim'
+fi
+
+alias ctrlc="xclip -selection clipboard"
+alias ctrlv="xclip -selection clipboard -o"

@@ -9,10 +9,16 @@ You can read more about this in:
 - [shell startup](https://blog.flowblok.id.au/2013-02/shell-startup-scripts.html) - from this post by Peter Ward
 - `man bash` - from bash man docs
 
-## Requirements
-You will need the following packages to set up correctly (unless you remove them, like alias):
+## Aliases
+You will need the following packages to set up custom aliases (sure, if you want to use it):
 
 - [exa](https://github.com/ogham/exa) - better `ls`
 - [nvim](https://github.com/neovim/neovim) - personal editor, you can change/remove from configuration it if you want to
 - [bat](https://github.com/sharkdp/bat) - better `cat`
 - [xclip](https://github.com/sharkdp/bat) - xorg clipboard
+
+## Path location
+The location of bash files is in ~/.bash directory, except these three:
+- `~/.bashrc`
+- `~/.bash_logout`
+- `~/.bash_profile`
