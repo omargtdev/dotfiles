@@ -39,23 +39,28 @@ Of course, you can install the whatever you want and change it.
 The following packages are necessary, because is being used in the configuration. As I say,
 the installation of each package may vary depending on your distro.
 
-- [nm-applet](https://github.com/GNOME/network-manager-applet) - Systray to manage network connections and configurations
-- [pavucontrol](https://github.com/pulseaudio/pavucontrol) - GUI based on GTK to manage volume for PulseAudio
-- [flameshot](https://github.com/flameshot-org/flameshot) - Screenshot tool
+**Primary:**
+- [picom](https://github.com/yshui/picom) - Compositor to make shadows and transitions
+- [i3blocks](https://github.com/vivien/i3blocks) - Set an custom i3 bar
 - [acpi](https://archlinux.org/packages/extra/x86_64/acpi/) - Show battery status and other utilities
-- [setxkbmap](https://archlinux.org/packages/extra/x86_64/xorg-setxkbmap/) CLI to change keyboard layout
 - [dunst](https://archlinux.org/packages/extra/x86_64/dunst/) - Notification manager
 - [brillo](https://gitlab.com/cameronnemo/brillo) - Control backlight like xbacklight, but an better one
 - [playerctl](https://github.com/altdesktop/playerctl)  - Control player like spotify, browser, etc
+- [xrandr](https://archlinux.org/packages/extra/x86_64/xorg-xrandr/) - Control displays through CLI
+- [dmenu](https://archlinux.org/packages/extra/x86_64/dmenu/) - Minimalist menu to run applications
+- [autotiling](https://github.com/nwg-piotr/autotiling) - Open windows determinating its size automatically (Only in tailing mode)
+- [ibus](https://wiki.archlinux.org/title/IBus) - Manage keyboard layouts
+- [xdlehook](https://archlinux.org/packages/extra/x86_64/xautolock/) - Lock system to screen-saver (better than xautolock)
+- [betterlockscreen](https://github.com/betterlockscreen/betterlockscreen) - Set amazing lockscreen and background wallpapers (Set service to autolock in suspend/hibernate)
+- [setxkbmap](https://archlinux.org/packages/extra/x86_64/xorg-setxkbmap/) CLI to change keyboard layout (you can use ibus instead)
+
+**Apps:**
+- [nm-applet](https://github.com/GNOME/network-manager-applet) - Systray to manage network connections and configurations
+- [flameshot](https://github.com/flameshot-org/flameshot) - Screenshot tool
+- [pavucontrol](https://github.com/pulseaudio/pavucontrol) - GUI based on GTK to manage volume (especially with PulseaAudio)
 - [alacritty](https://github.com/alacritty/alacritty) - Default terminal
 - [firefox](https://www.mozilla.org/es-ES/firefox/new/) - Default browser
-- [dmenu](https://archlinux.org/packages/extra/x86_64/dmenu/) - Minimalist menu to run applications
-- [xrandr](https://archlinux.org/packages/extra/x86_64/xorg-xrandr/) - Control displays through CLI
-- [picom](https://github.com/yshui/picom) - Compositor to make shadows and transitions
-- [i3blocks](https://github.com/vivien/i3blocks) - Set an custom i3 bar
-- [betterlockscreen](https://github.com/betterlockscreen/betterlockscreen) - Set amazing lockscreen and background wallpapers (Set service to autolock in suspend/hibernate)
-- [autotiling](https://github.com/nwg-piotr/autotiling) - Open windows determinating its size automatically (Only in tailing mode)
-- [xautolock](https://archlinux.org/packages/extra/x86_64/xautolock/) - Lock system to screen-saver
+
 
 ## Usage
 Well, for now. I did not a cheatseet to specify "what commands does that",
@@ -66,5 +71,5 @@ Although things are missing in this config, it works fine.
 
 ### TODO
 
-- [ ] Fix wallpaper in second screen (xrandr)
+- [x] Fix wallpaper in second screen (xrandr)
 - [ ] Add acknowledgements

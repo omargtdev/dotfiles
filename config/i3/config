@@ -12,10 +12,10 @@ set $mod Mod4
 font pango: Hack Nerd Font 9
 
 # default i3 tiling mode:
-workspace_layout tabbed
+workspace_layout default
 
 #border indicator on windows:
-new_window pixel 1
+new_window pixel 2
 
 # Set inner/outer gaps
 gaps inner 6
@@ -59,12 +59,11 @@ client.urgent		    	$urgentred	$urgentred	$white		$yellowbrown	$yellowbrown
 # Network Manager
 exec --no-startup-id nm-applet
 
-# Volume
-#exec --no-startup-id volumeicon
-
 # Take screenshot
 exec --no-startup-id flameshot
 
+# Start ibus
+exec --no-startup-id ibus-daemon -x
 
 ##############
 # Workspaces #
@@ -116,26 +115,21 @@ set $ws10 "10"
 ##################
 
 # bind program to workspace and focus to them on startup:
-#assign [class="Alacritty"] $ws1
 
-assign [class="firefox"] $ws2
+assign [class="(?i)firefox"] $ws2
+assign [class="(?i)firefox-esr"] $ws2
+assign [class="microsoft-edge"] $ws2
 
 assign [class="jetbrains-studio"] $ws3
-#assign [class="xfreerdp"] $ws3
+assign [class="jetbrains-idea-ce"] $ws3
 
-#assign [class="thunderbird"] $ws4
+assign [class="thunderbird"] $ws4
 
-assign [class="whatsapp-nativefier-d40211"] $ws5
 assign [class="discord"] $ws5
 
-assign [class="zoom"] $ws6
+assign [class="zoom*"] $ws6
 
-#assign [class="Microsoft-edge"] $ws7
-
-# This is a special case
-for_window [class="Spotify"] move to workspace $ws8
-
-assign [class="Steam"] $ws9
+assign [class="steam"] $ws9
 assign [class="dota2"] $ws10
 
 # automatic set focus new window if it opens on another workspace then the current:
@@ -143,31 +137,29 @@ for_window [class=Alacritty] focus
 for_window [class=Navigator] focus
 
 ##################
-# Floating rules #
+# App rules #
 ##################
+
+for_window [class="(?i)firefox"] layout tabbed
+for_window [class="(?i)firefox-esr"] layout tabbed
+for_window [class="jetbrains-idea-ce"] layout tabbed
+for_window [class="zoom*"] layout tabbed
 
 # set floating (nontiling) for apps needing it
 for_window [class="Yad" instance="yad"] floating enable
 for_window [class="Galculator" instance="galculator"] floating enable
+for_window [class="gnome-calculator"] floating enable
 for_window [class="Blueberry.py" instance="blueberry.py"] floating enable
 for_window [window_role="About"] floating enable
 
-for_window [class="Steam"] floating enable
-for_window [class="dota2"] fullscreen enable
-
-# set floating (nontiling) for special apps
-for_window [class="Xsane" instance="xsane"] floating enable
 for_window [class="Pavucontrol" instance="pavucontrol"] floating enable
-
-# Set theme for Qt and GTK respectively
-for_window [class="qt5ct" instance="qt5ct"] floating enable
 for_window [class="Lxappearance" instance="lxappearance"] floating enable
 
-# set border of floating window
-for_window [class="urxvt"] border pixel 1
+# Fix this
+#for_window [class="kvantummanager"] floating enable
+#for_window [class="kvantumpreview"] floating enable
 
-# set position of floating window
-for_window [class=".*"] move position center
+for_window [class="dota2"] fullscreen enable
 
 ##########
 # Layout #
@@ -214,13 +206,9 @@ bindsym Mod1+v split v
 bindsym $mod+Shift+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+g layout tabbed
-bindsym $mod+e layout toggle split
+bindsym $mod+t layout toggle
 bindsym $mod+Shift+space floating toggle
-bindsym $mod+space focus mode_toggle
-
-# focus the parent container
-bindsym $mod+a focus parent
+bindsym $mod+Shift+e focus mode_toggle
 
 #############
 # Utilities #
@@ -229,8 +217,8 @@ bindsym $mod+a focus parent
 # Lock the system
 bindsym $mod+Ctrl+l exec betterlockscreen -l blur
 
-# Change keyboard-layout
-bindsym $mod+Ctrl+k exec --no-startup-id ~/.config/i3/scripts/change-keyboard-layout
+# Change keyboard-layout (Use ibus)
+#bindsym $mod+Ctrl+k exec --no-startup-id ~/.config/i3/scripts/change-keyboard-layout
 
 # Enable/Disable notifications (Do not bother)
 bindsym $mod+n exec --no-startup-id ~/.config/i3/scripts/notifications
@@ -248,15 +236,9 @@ bindsym $mod+semicolon exec --no-startup-id dunstctl close
 bindsym $mod+Shift+semicolon exec --no-startup-id dunstctl close-all
 
 # Volume control
-#set $refresh_i3status killall -SIGUSR1 i3blocks
-#bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh_i3status
-#bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && $refresh_i3status
-#bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
-#bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -q -D default sset Master 5%+ unmute
 bindsym XF86AudioLowerVolume exec --no-startup-id amixer -q -D default sset Master 5%- unmute
 bindsym XF86AudioMute exec --no-startup-id amixer -q -D default sset Master toggle
-
 
 # Media (video/audio) controller
 bindsym XF86AudioPlay exec playerctl play-pause
@@ -276,14 +258,17 @@ bindsym $mod+b exec firefox
 # Screenshot
 bindsym Print exec flameshot gui 
 
+# Reload wallpaper
+bindsym $mod+Shift+w exec --no-startup-id ~/.fehbg
+
 # Dmnenu
-bindsym $mod+d exec --no-startup-id "dmenu_run -nf '#BBBBBB' -nb '#222222' -sb '#005577' -sf '#EEEEEE' -fn 'monospace-10'"
+bindsym $mod+d exec --no-startup-id "dmenu_run -fn 'Hack-9'"
 
 #######################
 # Displays (Monitors) #
 #######################
 
-# Active display - (TODO: Configure an wallpaper)
+# Active display
 bindsym Ctrl+F4 exec --no-startup-id xrandr --output eDP-1 --auto --primary --output HDMI-1 --auto --left-of eDP-1
 # Desactive display
 bindsym Ctrl+Shift+F4 exec --no-startup-id xrandr --output HDMI-1 --off
@@ -306,26 +291,14 @@ bindsym $mod+less move workspace to output left
 # Services/Applications on login #
 ##################################
 
-# Set keyboard layout
-exec --no-startup-id setxkbmap us
-
 # Compositor
-exec_always --no-startup-id picom
+exec --no-startup-id picom
 
 # set wallpaper
-exec --no-startup-id betterlockscreen -w
-#exec --no-startup-id feh --bg-scale ~/Pictures/Wallpapers/1.png
+exec --no-startup-id ~/.fehbg
 
-# Auto suspend, ignoring the right and left top corners
-exec --no-startup-id xautolock -time 3 -locker "systemctl suspend" -detectsleep -corners '--00'
-# You can also use this script to verify if something is playing before to suspend instead of use corners
-# It requires playerctl installed
-#exec --no-startup-id xautolock -time 3 -locker "~/.config/i3/scripts/verify-to-suspend" -detectsleep
-
-# Desktop notifications
-#exec --no-startup-id dbus-launch dunst --config ~/.config/dunst/dunstrc
-# alternative if you installed aside with XFCE4:
-# exec --no-startup-id /usr/lib/xfce4/notifyd/xfce4-notifyd &
+# Replacement for xautolock (Install xidlehook)
+exec --no-startup-id ~/.config/i3/scripts/verify-to-suspend
 
 # autotiling script
 # https://github.com/nwg-piotr/autotiling
@@ -339,7 +312,7 @@ exec_always --no-startup-id autotiling
 bar {
     # Bar style
 	status_command i3blocks -c ~/.config/i3/i3blocks.conf
-	#position top
+	position top
     # Set where show the tray (Primary monitor, external monitor, etc)
 	tray_output primary
 	tray_padding 2
@@ -387,7 +360,7 @@ mode "$mode_gaps_inner" {
 
         bindsym Shift+m gaps inner all plus 5
         bindsym Shift+l gaps inner all minus 5
-        bindsym Shift+0     gaps inner all set 0
+        bindsym Shift+0 gaps inner all set 0
 
         bindsym Return mode "$mode_gaps"
         bindsym Escape mode "default"
@@ -395,11 +368,11 @@ mode "$mode_gaps_inner" {
 mode "$mode_gaps_outer" {
         bindsym m gaps outer current plus 5
         bindsym l gaps outer current minus 5
-        bindsym 0     gaps outer current set 0
+        bindsym 0 gaps outer current set 0
 
         bindsym Shift+m gaps outer all plus 5
         bindsym Shift+l gaps outer all minus 5
-        bindsym Shift+0     gaps outer all set 0
+        bindsym Shift+0 gaps outer all set 0
 
         bindsym Return mode "$mode_gaps"
         bindsym Escape mode "default"
