@@ -24,3 +24,6 @@ export NVM_DIR="$HOME/.nvm"
 
 # Qt themes
 export QT_STYLE_OVERRIDE=kvantum
+
+# Homebrew
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"

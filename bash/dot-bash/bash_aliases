@@ -20,6 +20,13 @@ fi
 alias reload='source $HOME/.bashrc'
 alias dotfiles='cd $HOME/.dotfiles'
 
+# Install ripgrep
+if [ -x "$(command -v rg)" ]; then
+    alias grep='rg'
+else
+    alias grep='grep --color'
+fi
+
 # Install neovim
 if [ -x "$(command -v nvim)" ]; then
     alias v='nvim'

@@ -18,6 +18,11 @@ shopt -s checkwinsize
 # Prompt
 PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\W\[\033[00m\]\$ '
 
+# Load custom variables or adding new path
+if [ -f ~/.bash/bash_variables ]; then
+    . ~/.bash/bash_variables
+fi
+
 # Aliases
 if [ -f ~/.bash/bash_aliases ]; then
     . ~/.bash/bash_aliases
@@ -34,7 +39,11 @@ if ! shopt -oq posix; then
     fi
 fi
 
-# Load custom variables or adding new path
-if [ -f ~/.bash/bash_custom ]; then
-    . ~/.bash/bash_custom
+# Load user scripts (Completion, custom scripts, etc)
+CUSTOM_SCRIPTS_DIR=~/.bash/bash_custom.d
+if [ -d "$CUSTOM_SCRIPTS_DIR" ]; then
+    for f in $(ls "$CUSTOM_SCRIPTS_DIR") ; do
+        . "$CUSTOM_SCRIPTS_DIR/$f"
+    done
 fi
+unset CUSTOM_SCRIPTS_DIR
