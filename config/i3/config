@@ -122,6 +122,7 @@ assign [class="microsoft-edge"] $ws2
 
 assign [class="jetbrains-studio"] $ws3
 assign [class="jetbrains-idea-ce"] $ws3
+assign [class="(?i)code*"] $ws3
 
 assign [class="thunderbird"] $ws4
 
@@ -130,6 +131,7 @@ assign [class="discord"] $ws5
 assign [class="zoom*"] $ws6
 
 assign [class="steam"] $ws9
+assign [class="(?i)minecraft*"] $ws10
 assign [class="dota2"] $ws10
 
 # automatic set focus new window if it opens on another workspace then the current:
@@ -155,9 +157,8 @@ for_window [window_role="About"] floating enable
 for_window [class="Pavucontrol" instance="pavucontrol"] floating enable
 for_window [class="Lxappearance" instance="lxappearance"] floating enable
 
-# Fix this
-#for_window [class="kvantummanager"] floating enable
-#for_window [class="kvantumpreview"] floating enable
+for_window [class="(?i)kvantum*"] floating enable
+for_window [class="qt5ct"] floating enable
 
 for_window [class="dota2"] fullscreen enable
 
