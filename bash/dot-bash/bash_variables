@@ -1,4 +1,8 @@
 # Load custom or specific variables and/or add custom path to PATH variable
+#
+if ! [[ "$PATH" =~ "/usr/sbin:" ]] then                     
+    PATH="/usr/sbin:$PATH"
+fi
 
 # User specific environment
 if ! [[ "$PATH" =~ "$HOME/.local/bin" ]] then
@@ -17,12 +21,18 @@ if [[ -d "$DOTNET_DIR" ]]; then
     fi
 fi
 
+# Rust
+if [[ -f "$HOME/.cargo/env" ]] then
+    . "$HOME/.cargo/env"
+fi
+
 # Node version manager
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
 
 # Qt themes
+export QT_QPA_PLATFORMTHEME=qt5ct
 export QT_STYLE_OVERRIDE=kvantum
 
 # Homebrew
