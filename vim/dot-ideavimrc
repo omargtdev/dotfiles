@@ -20,7 +20,7 @@ nmap <leader><leader>s <Plug>(easymotion-s)
 
 """ Plugin (NERDTree)
 set NERDTree
-nnoremap <leader>n :NERDTree<CR>
+nnoremap <leader>nd :NERDTree<CR>
 
 """ Plugin (Surround)
 " Normal Mode:
@@ -99,9 +99,9 @@ nnoremap <leader>o :action OptimizeImports<CR>
 set incsearch
 
 sethandler <S-f> n-v:ide i:vim
-nnoremap <leader>f :action GotoFile<CR>
+nnoremap <leader>ff :action GotoFile<CR>
+nnoremap <leader>fr :action RecentFiles<CR>
 nnoremap <leader>a :action GotoAction<CR>
-nnoremap <leader>F :action RecentFiles<CR>
 nnoremap <leader>s :action FileStructurePopup<CR>
 nnoremap <leader>b :action ShowNavBar<CR>
 
