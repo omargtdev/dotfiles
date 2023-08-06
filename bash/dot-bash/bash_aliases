@@ -1,16 +1,22 @@
+# Search text
+alias grep='grep --color'
+alias egrep='grep --color -E'
+alias fgrep='grep --color -F'
+
 # Install exa
 if [ -x "$(command -v exa)" ]; then
     alias ls='exa --icons'
-    alias ll='exa -l --icons'
+    alias ll='exa -lh --icons'
     alias la='exa -a --icons'
-    alias lla='exa -lla --icons'
+    alias lla='exa -lha --icons'
     alias tree='exa -T --icons'
 else
     alias ls='ls --color'
-    alias ll='ls --color -lh'
+    alias ll='ls --color -lFh'
     alias la='ls --color -a'
-    alias lla='ls --color -lha'
+    alias lla='ls --color -lFha'
 fi
+alias l.="/bin/ls -A | grep -E '^\.'"
 
 # Install bat
 if [ -x "$(command -v bat)" ]; then
@@ -19,13 +25,6 @@ fi
 
 alias reload='source $HOME/.bashrc'
 alias dotfiles='cd $HOME/.dotfiles'
-
-# Install ripgrep
-if [ -x "$(command -v rg)" ]; then
-    alias grep='rg'
-else
-    alias grep='grep --color'
-fi
 
 # Install neovim
 if [ -x "$(command -v nvim)" ]; then
@@ -36,3 +35,13 @@ fi
 
 alias ctrlc="xclip -selection clipboard"
 alias ctrlv="xclip -selection clipboard -o"
+
+# Readable output
+alias df='df -h'
+alias du='du -h'
+
+# Continue download
+wgetc='wget -c'
+
+# Better readable
+alias free="free -mt"
