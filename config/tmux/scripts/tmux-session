@@ -1,0 +1,23 @@
+#!/bin/bash
+
+session_name="$1"
+
+if [[ -z "$session_name" ]]; then
+	echo "Specify a name for the session"
+	exit
+fi
+
+# Check if exist a tmux session already
+tmux has-session -t=$session_name 2>/dev/null
+
+# Is it correct?, so create new session
+if [[ $? -ne 0 ]]; then
+	TMUX='' tmux new-session -d -s "$session_name"
+fi
+
+# Attach, outside or not from tmux
+if [[ -z "$TMUX" ]]; then
+	tmux attach -t "$session_name"
+else
+	tmux switch-client -t "$session_name"
+fi

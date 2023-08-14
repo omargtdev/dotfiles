@@ -25,7 +25,6 @@ fi
 
 alias reload='source $HOME/.bashrc'
 alias dotfiles='cd $HOME/.dotfiles'
-
 # Install neovim
 if [ -x "$(command -v nvim)" ]; then
     alias v='nvim'
@@ -45,3 +44,8 @@ wgetc='wget -c'
 
 # Better readable
 alias free="free -mt"
+
+# Tmux
+alias tx='tmux'
+alias txs="$HOME/.config/tmux/scripts/tmux-session"
+alias tx-delete-all="$HOME/.config/tmux/scripts/tmux-delete-session"

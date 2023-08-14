@@ -1,0 +1,21 @@
+#!/bin/bash
+
+sessions=$(tmux list-sessions 2>/dev/null)
+
+# Verify if exist any session
+if [[ -z "$sessions" ]]; then
+	echo "There are not sessions"
+	exit
+fi
+
+if ! [[ -z "$TMUX" ]]; then
+	echo "You need to detached from current client first"
+	exit
+fi
+
+# Delete all sessions
+for i in $(tmux list-sessions | cut -d : -f 1); do
+	tmux kill-session -t $i
+done
+
+echo 'All sessions were deleted!'
