@@ -1,28 +1,28 @@
 # Load custom or specific variables and/or add custom path to PATH variable
 #
-if ! [[ "$PATH" =~ "/usr/sbin:" ]] then                     
+if ! [[ "$PATH" =~ "/usr/sbin:" ]]; then                     
     PATH="/usr/sbin:$PATH"
 fi
 
 # User specific environment
-if ! [[ "$PATH" =~ "$HOME/.local/bin" ]] then
+if ! [[ "$PATH" =~ "$HOME/.local/bin" ]]; then
     PATH="$HOME/.local/bin:$PATH"
 fi                                                                 
                                                                    
-if ! [[ "$PATH" =~ "$HOME/.cargo/bin:" ]] then                     
+if ! [[ "$PATH" =~ "$HOME/.cargo/bin:" ]]; then                     
     PATH="$HOME/.cargo/bin:$PATH"
 fi
 
 # Dotnet
 DOTNET_DIR="$HOME/.dotnet"
 if [[ -d "$DOTNET_DIR" ]]; then
-    if ! [[ "$PATH" =~ "$HOME/.dotnet" ]] then                     
+    if ! [[ "$PATH" =~ "$HOME/.dotnet" ]]; then                     
         PATH="$HOME/.dotnet:$PATH"
     fi
 fi
 
 # Rust
-if [[ -f "$HOME/.cargo/env" ]] then
+if [[ -f "$HOME/.cargo/env" ]]; then
     . "$HOME/.cargo/env"
 fi
 
