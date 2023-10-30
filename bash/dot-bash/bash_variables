@@ -16,9 +16,14 @@ fi
 # Dotnet
 DOTNET_DIR="$HOME/.dotnet"
 if [[ -d "$DOTNET_DIR" ]]; then
-    if ! [[ "$PATH" =~ "$HOME/.dotnet" ]]; then                     
-        PATH="$HOME/.dotnet:$PATH"
+    if ! [[ "$PATH" =~ "$DOTNET_DIR" ]] then                     
+        PATH="$PATH:$DOTNET_DIR"
     fi
+
+    if ! [[ "$PATH" =~ "$DOTNET_DIR/tools" ]] then                     
+        PATH="$PATH:$DOTNET_DIR/tools"
+    fi
+
 fi
 
 # Rust
