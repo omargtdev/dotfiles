@@ -1,0 +1,37 @@
+# Add custom path to PATH variable
+#
+if ! [[ "$PATH" =~ "/usr/sbin:" ]]; then                     
+    PATH="/usr/sbin:$PATH"
+fi
+
+# User specific environment
+if ! [[ "$PATH" =~ "$HOME/.local/bin" ]]; then
+    PATH="$HOME/.local/bin:$PATH"
+fi                                                                 
+                                                                   
+if ! [[ "$PATH" =~ "$HOME/.bin" ]]; then                     
+    PATH="$HOME/.bin:$PATH"
+fi
+
+# Dotnet
+DOTNET_DIR="$HOME/.dotnet"
+if [[ -d "$DOTNET_DIR" ]]; then
+
+    if ! [[ "$PATH" =~ "$DOTNET_DIR" ]]; then                     
+        PATH="$PATH:$DOTNET_DIR"
+    fi
+
+    if ! [[ "$PATH" =~ "$DOTNET_DIR/tools" ]]; then                     
+        PATH="$PATH:$DOTNET_DIR/tools"
+    fi
+
+fi
+
+# Rust
+if [[ -f "$HOME/.cargo/env" ]]; then
+    . "$HOME/.cargo/env"
+fi
+
+# Homebrew
+[ -f '/home/linuxbrew/.linuxbrew/bin/brew' ] && \
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"

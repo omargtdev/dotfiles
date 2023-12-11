@@ -1,36 +1,3 @@
-# Load custom or specific variables and/or add custom path to PATH variable
-#
-if ! [[ "$PATH" =~ "/usr/sbin:" ]]; then                     
-    PATH="/usr/sbin:$PATH"
-fi
-
-# User specific environment
-if ! [[ "$PATH" =~ "$HOME/.local/bin" ]]; then
-    PATH="$HOME/.local/bin:$PATH"
-fi                                                                 
-                                                                   
-if ! [[ "$PATH" =~ "$HOME/.cargo/bin:" ]]; then                     
-    PATH="$HOME/.cargo/bin:$PATH"
-fi
-
-# Dotnet
-DOTNET_DIR="$HOME/.dotnet"
-if [[ -d "$DOTNET_DIR" ]]; then
-    if ! [[ "$PATH" =~ "$DOTNET_DIR" ]] then                     
-        PATH="$PATH:$DOTNET_DIR"
-    fi
-
-    if ! [[ "$PATH" =~ "$DOTNET_DIR/tools" ]] then                     
-        PATH="$PATH:$DOTNET_DIR/tools"
-    fi
-
-fi
-
-# Rust
-if [[ -f "$HOME/.cargo/env" ]]; then
-    . "$HOME/.cargo/env"
-fi
-
 # Node version manager
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -39,6 +6,3 @@ export NVM_DIR="$HOME/.nvm"
 # Qt themes
 export QT_QPA_PLATFORMTHEME=qt5ct
 export QT_STYLE_OVERRIDE=kvantum
-
-# Homebrew
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
