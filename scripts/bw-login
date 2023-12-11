@@ -1,5 +1,13 @@
 #!/bin/bash
 
+# You need to have GnuPG installed for encrypt files that contains
+# your bitwarden credentials in the following format:
+# email:my-email
+# password:my-password
+#
+# These files need to be stored in ~/.secrets directory. Each of files
+# need to be called as follows: <your-username>-bw.gpg
+
 account_selected=$1
 
 [ -z $account_selected ] &&
