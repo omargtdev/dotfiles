@@ -1,0 +1,42 @@
+#!/bin/bash
+
+account_selected=$1
+
+[ -z $account_selected ] &&
+echo 'Provide an account to login.' &&
+exit 1
+
+base_dir="$HOME/.secrets"
+if ! [ -d $base_dir ]; then
+    echo "$base_dir directory does not exist."
+    exit 1
+fi
+
+target_file="$base_dir/$account_selected-bw.gpg"
+if ! [ -f $target_file ]; then
+    echo "File $target_file does not exist."
+    exit 1
+fi
+
+# Decrypt content
+credentials=$(gpg --decrypt $target_file)
+
+email=$(echo $credentials | cut -d : -f 2 | cut -d ' ' -f 1)
+password=$(echo $credentials | cut -d : -f 3)
+
+# Check if is already logged in
+user_logged_email=$(bw status | grep -Po '"userEmail":"\K[^"]*')
+if ! [ -z $user_logged_email ]; then
+    echo "Logout from $user_logged_email"
+    bw logout
+fi
+
+# Login and save session
+session_token=$(bw login $email "$password" --raw)
+
+
+# TODO: Investigate how to export this variable to session called
+#BW_SESSION=$session_token
+#export BW_SESSION
+echo "Session token: $session_token"
+echo "Connected to $email!"
