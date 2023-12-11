@@ -24,8 +24,14 @@ credentials=$(gpg --decrypt $target_file)
 email=$(echo $credentials | cut -d : -f 2 | cut -d ' ' -f 1)
 password=$(echo $credentials | cut -d : -f 3)
 
-# Check if is already logged in
 user_logged_email=$(bw status | grep -Po '"userEmail":"\K[^"]*')
+
+if [ "$user_logged_email" == "$email" ]; then
+    echo "You are already logged in with the email $email"
+    exit 0
+fi
+
+# Check if is already logged in
 if ! [ -z $user_logged_email ]; then
     echo "Logout from $user_logged_email"
     bw logout
