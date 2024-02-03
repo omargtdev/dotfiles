@@ -29,8 +29,8 @@ if [ -f ~/.bash/bash_variables ]; then
 fi
 
 # Aliases
-if [ -f ~/.bash/bash_aliases ]; then
-    . ~/.bash/bash_aliases
+if [ -f ~/.shell/aliases ]; then 
+    . ~/.shell/aliases
 fi
 
 # enable programmable completion features (you don't need to enable

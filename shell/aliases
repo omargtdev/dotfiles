@@ -23,8 +23,14 @@ if [ -x "$(command -v bat)" ]; then
     alias cat='bat --paging=never --style=plain'
 fi
 
-alias reload='source $HOME/.bashrc'
+if [[ "$SHELL" == '/bin/zsh' ]]; then
+    alias reload='source $HOME/.zshrc'
+else
+    alias reload='source $HOME/.bashrc'
+fi
+
 alias dotfiles='cd $HOME/.dotfiles'
+
 # Install neovim
 if [ -x "$(command -v nvim)" ]; then
     alias v='nvim'
@@ -49,9 +55,3 @@ alias free="free -mt"
 alias tx='tmux'
 alias txs="$HOME/.config/tmux/scripts/tmux-session"
 alias tx-delete-all="$HOME/.config/tmux/scripts/tmux-delete-session"
-
-# Laravel
-alias sail='[ -f sail ] && bash sail || bash vendor/bin/sail'
-
-# Docker
-alias mysqlsh='docker run -it --rm mysqlsh'
