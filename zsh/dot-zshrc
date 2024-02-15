@@ -79,5 +79,10 @@ function man() {
     man "$@"
 }
 
+# Variables
+if ! [[ "$PATH" =~ "/usr/bin:" ]]; then                     
+    PATH="/usr/bin:$PATH"
+fi
+
 # Node version manager
 [ -f /usr/share/nvm/init-nvm.sh ] && source /usr/share/nvm/init-nvm.sh
