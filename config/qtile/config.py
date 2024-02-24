@@ -8,6 +8,7 @@ from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
 
 mod = "mod4"
+alt = "mod1"
 #terminal = guess_terminal()
 terminal = "alacritty"
 
@@ -62,7 +63,7 @@ keys = [
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
     Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
 
-    # TODO: Add hook or other method to handle all floating windows to frontpactl set-sink-mute @DEFAULT_SINK@ toggle
+    # TODO: Add hook or other method to handle all floating windows to front
     Key([mod, "control"], "f", lazy.window.toggle_floating(), desc="Toggle floating"),
 
     # Volume (to get key names use 'xbindkeys' package)
@@ -75,6 +76,12 @@ keys = [
     # Backlight 
     Key([], "XF86MonBrightnessUp", lazy.spawn("brillo -A 5"), desc="Increase brightness"),
     Key([], "XF86MonBrightnessDown", lazy.spawn("brillo -U 5"), desc="Increase brightness"),
+
+    # Print
+    Key([], "Print", lazy.spawn("flameshot gui"), desc="Take screenshot"),
+
+    # Lock screen
+    Key([mod, alt], "l", lazy.spawn("betterlockscreen -l blur"), desc="Lock"),
 ]
 
 # Add key bindings to switch VTs in Wayland.

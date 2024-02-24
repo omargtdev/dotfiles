@@ -1,5 +1,5 @@
 #!/bin/sh
 
-flameshot gui &
+flameshot &
 picom &
 ~/.fehbg &
