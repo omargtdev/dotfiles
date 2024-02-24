@@ -1,5 +1,5 @@
 # Add custom path to PATH variable
-#
+
 if ! [[ "$PATH" =~ "/usr/sbin:" ]]; then                     
     PATH="/usr/sbin:$PATH"
 fi

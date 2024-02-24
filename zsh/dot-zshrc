@@ -9,6 +9,9 @@ fi
 if [ -f ~/.powerlevel10k/powerlevel10k.zsh-theme ]; then
   source ~/.powerlevel10k/powerlevel10k.zsh-theme
   ZSH_THEME='powerlevel10k/powerlevel10k'
+elif [ -f /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme ]; then
+  source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme  
+  ZSH_THEME='powerlevel10k/powerlevel10k'
 fi
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
@@ -24,8 +27,12 @@ HISTFILE=~/.histzsh
 HISTSIZE=5000
 SAVEHIST=10000
 
-# Aliases
-[[ -f ~/.shell/aliases ]] && source ~/.shell/aliases
+# Extra
+if [ -d "$HOME/.shell" ]; then
+    for f in $(ls --color=never "$HOME/.shell") ; do
+        . "$HOME/.shell/$f"
+    done
+fi
 
 # Autocomplete
 zstyle ':completion:*' menu select
@@ -79,10 +86,10 @@ function man() {
     man "$@"
 }
 
-# Variables
-if ! [[ "$PATH" =~ "/usr/bin:" ]]; then                     
-    PATH="/usr/bin:$PATH"
-fi
-
 # Node version manager
 [ -f /usr/share/nvm/init-nvm.sh ] && source /usr/share/nvm/init-nvm.sh
+
+# Virtualenvwrapper
+export WORKON_HOME=$HOME/.virtualenvs
+export PROJECT_HOME=$HOME/Devel
+[ -f /usr/bin/virtualenvwrapper.sh ] && source /usr/bin/virtualenvwrapper.sh

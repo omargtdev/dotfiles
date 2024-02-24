@@ -18,19 +18,16 @@ shopt -s checkwinsize
 # Prompt
 PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\W\[\033[00m\]\$ '
 
-# Load path
-if [ -f ~/.bash/bash_path ]; then
-    . ~/.bash/bash_path
-fi
-
 # Load custom variables
 if [ -f ~/.bash/bash_variables ]; then
     . ~/.bash/bash_variables
 fi
 
-# Aliases
-if [ -f ~/.shell/aliases ]; then 
-    . ~/.shell/aliases
+# Extras
+if [ -d "$HOME/.shell" ]; then
+    for f in $(ls --color=never "$HOME/.shell") ; do
+        . "$HOME/.shell/$f"
+    done
 fi
 
 # enable programmable completion features (you don't need to enable
