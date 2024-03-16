@@ -82,6 +82,9 @@ keys = [
 
     # Lock screen
     Key([mod, alt], "l", lazy.spawn("betterlockscreen -l blur"), desc="Lock"),
+
+    # Toggle keyboard layout
+    Key([mod], "space", lazy.spawn("/home/omargtdev/.config/qtile/scripts/toggle-keyboard-layout"), desc="Toggle keyboard layout"),
 ]
 
 # Add key bindings to switch VTs in Wayland.

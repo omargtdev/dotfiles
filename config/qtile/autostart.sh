@@ -3,3 +3,4 @@
 flameshot &
 picom &
 ~/.fehbg &
+setxkbmap -layout us

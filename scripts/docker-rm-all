@@ -1,0 +1,39 @@
+#!/bin/bash
+
+
+help_and_exit () {
+    echo "usage: $0 <container | image>" >&2
+    exit 1
+}
+
+if [ $# -ne 1 ] ; then
+    help_and_exit
+fi
+
+resource=$1
+
+case "$resource" in
+    container)
+        ids=$(docker ps -qa)
+
+        for id in $ids 
+        do
+            docker container rm $id
+        done
+
+        echo "done"
+        ;;
+    image)
+        ids=$(docker images -qa)
+
+        for id in $ids 
+        do
+            docker image rm $id
+        done
+
+        echo "done"
+        ;;
+    *)
+        help_and_exit
+        ;;
+esac

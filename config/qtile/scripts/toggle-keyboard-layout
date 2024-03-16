@@ -1,0 +1,20 @@
+#!/bin/bash
+
+current_layout=$(setxkbmap -query | grep layout | cut -f 2 -d ':' | xargs)
+
+change_layout () {
+    setxkbmap -layout $1
+    dunstify "Layout changed to: $1"
+}
+
+case $current_layout in
+    us)
+        change_layout latam
+    ;;
+    latam)
+        change_layout us
+    ;;
+    *)    
+        dunstify "Layout not recognized: $current_layout"
+    ;;
+esac

@@ -4,6 +4,10 @@ if ! [[ "$PATH" =~ "/usr/sbin:" ]]; then
     PATH="/usr/sbin:$PATH"
 fi
 
+if ! [[ "$PATH" =~ "/usr/local/bin:" ]]; then                     
+    PATH="/usr/local/bin:$PATH"
+fi
+
 # User specific environment
 if ! [[ "$PATH" =~ "$HOME/.local/bin" ]]; then
     PATH="$HOME/.local/bin:$PATH"
