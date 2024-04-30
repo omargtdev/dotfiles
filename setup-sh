@@ -1,0 +1,46 @@
+#!/bin/bash
+
+shell_to_setup=$1
+
+[ -z $shell_to_setup ] && echo 'Specify a shell (zsh,bash)' && exit 1
+
+if ! type stow > /dev/null; then
+    echo 'Stow is required'
+fi
+
+if [ -d ~/.shell ]; then
+   [ -d ~/.shell.bk ] && rm -r ~/.shell.bk
+    mv ~/.shell ~/.shell.bk
+    echo "Backup made of .shell -> .shell.bk (directory)"
+fi
+
+mkdir ~/.shell
+
+cd ~/.dotfiles
+stow -t ~/.shell shell
+
+case $shell_to_setup in
+    zsh)
+	if [ -f ~/.zshrc ]; then
+	    mv ~/.zshrc ~/.zshrc.bk
+            echo "Backup made of .zshrc -> .zshrc.bk (file)"
+	fi
+	stow --dotfiles zsh
+    ;;
+    bash)
+	bash_content=$(sh -c 'find ~/.bash* -maxdepth 1 | grep -v .bash.bk') 2> /dev/null
+
+	[ -d ~/.bash.bk ] && rm -r ~/.bash.bk
+	mkdir ~/.bash.bk
+
+	for i in $bash_content; do
+	    mv $i ~/.bash.bk
+            echo "Backup made of $i -> ~/.bash.bk"
+	done
+
+	stow --dotfiles bash
+    ;;
+    *)
+        echo 'Invalid shell'
+        exit 1
+esac
