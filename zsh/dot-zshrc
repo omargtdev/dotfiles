@@ -27,13 +27,6 @@ HISTFILE=~/.histzsh
 HISTSIZE=5000
 SAVEHIST=10000
 
-# Extra
-if [ -d "$HOME/.shell" ]; then
-    for f in $(ls --color=never "$HOME/.shell") ; do
-        . "$HOME/.shell/$f"
-    done
-fi
-
 # Autocomplete
 zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list '' \
@@ -89,7 +82,21 @@ function man() {
 # Node version manager
 [ -f /usr/share/nvm/init-nvm.sh ] && source /usr/share/nvm/init-nvm.sh
 
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
 # Virtualenvwrapper
 export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/Devel
 [ -f /usr/bin/virtualenvwrapper.sh ] && source /usr/bin/virtualenvwrapper.sh
+
+# Nvim
+[ -d /opt/nvim-linux64/bin ] && export PATH="$PATH:/opt/nvim-linux64/bin"
+
+# Extra
+if [ -d "$HOME/.shell" ]; then
+    for f in $(ls --color=never "$HOME/.shell") ; do
+        . "$HOME/.shell/$f"
+    done
+fi
