@@ -1,15 +1,13 @@
-from os import path
+from os import path, getenv
 from subprocess import Popen
 
 from libqtile import hook
 from libqtile import bar, layout, qtile, widget
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
-from libqtile.utils import guess_terminal
 
 mod = "mod4"
 alt = "mod1"
-#terminal = guess_terminal()
 terminal = "alacritty"
 
 keys = [
@@ -84,7 +82,7 @@ keys = [
     Key([mod, alt], "l", lazy.spawn("betterlockscreen -l blur"), desc="Lock"),
 
     # Toggle keyboard layout
-    Key([mod], "space", lazy.spawn("/home/omargtdev/.config/qtile/scripts/toggle-keyboard-layout"), desc="Toggle keyboard layout"),
+    Key([mod], "space", lazy.spawn(getenv("HOME") + "/.config/qtile/scripts/toggle-keyboard-layout"), desc="Toggle keyboard layout"),
 ]
 
 # Add key bindings to switch VTs in Wayland.
@@ -144,8 +142,8 @@ layouts = [
 ]
 
 widget_defaults = dict(
-    font="Hack Nerd Font Mono",
-    fontsize=12,
+    font="Agave Nerd Font Mono",
+    fontsize=14,
     padding=3,
 )
 extension_defaults = widget_defaults.copy()
@@ -181,7 +179,7 @@ screens = [
                     format="{char} {percent:2.0%}"
                 ),
                 #widget.Backlight(), TODO: Review
-                widget.PulseVolume(),
+                #widget.PulseVolume(),
                 widget.Clock(format="%Y-%m-%d %a %I:%M %p"),
                 # TODO: Show the same as exit qtile shortcut
                 widget.QuickExit(),
@@ -232,6 +230,10 @@ auto_minimize = True
 
 # When using the Wayland backend, this can be used to configure input devices.
 wl_input_rules = None
+
+# xcursor theme (string or None) and size (integer) for Wayland backend
+wl_xcursor_theme = None
+wl_xcursor_size = 24
 
 # XXX: Gasp! We're lying here. In fact, nobody really uses or cares about this
 # string besides java UI toolkits; you can see several discussions on the
