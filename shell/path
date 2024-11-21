@@ -30,6 +30,7 @@ if [[ -d "$DOTNET_DIR" ]]; then
     fi
 
 fi
+export DOTNET_ROOT="$HOME/.dotnet"
 
 # Rust
 if [[ -f "$HOME/.cargo/env" ]]; then
@@ -39,3 +40,9 @@ fi
 # Homebrew
 [ -f '/home/linuxbrew/.linuxbrew/bin/brew' ] && \
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+# Tmux scripts
+TMUX_SCRIPTS_DIR="$HOME/.config/tmux/scripts"
+if ! [[ "$PATH" =~ "$TMUX_SCRIPTS_DIR:" && -d "$TMUX_SCRIPTS_DIR" ]]; then
+    PATH="$TMUX_SCRIPTS_DIR:$PATH"
+fi
