@@ -13,6 +13,7 @@
     lg = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
     s = status -sb
     c = commit -m
+    bn = rev-parse --abbrev-ref HEAD
 # Install delta for this features
 # Repo : https://github.com/dandavison/delta 
 [core]
@@ -38,3 +39,9 @@
     helper = !gh auth git-credential
 [credential "https://gist.github.com"]
     helper = !gh auth git-credential
+[credential]
+    credentialStore = gpg
+    helper = 
+    helper = /home/omargtdev/.dotnet/tools/git-credential-manager
+[credential "https://dev.azure.com"]
+    useHttpPath = true

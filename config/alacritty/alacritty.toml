@@ -1,6 +1,6 @@
 [font]
 normal = { family = "Agave Nerd Font Mono", style = "Regular" }
-size = 10
+size = 14
 
 [window]
 padding = { x = 1, y = 0 }
