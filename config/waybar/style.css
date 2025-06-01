@@ -1,0 +1,45 @@
+@define-color primary #000000;
+@define-color secondary #FFFFFF;
+
+* {
+    font-family: CaskaydiaMono Nerd Font; font-size: 11px;
+}
+
+window#waybar {
+    background-color: @secondary;
+    color: @primary;
+    font-weight: bold;
+}
+
+window#waybar.empty {
+    background-color: @primary;
+}
+
+#workspaces {
+    background-color: @primary;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+#workspaces button {
+    background-color: @primary;
+    color: @secondary;
+}
+
+#pulseaudio {
+    padding-left: 8px;
+}
+
+#pulseaudio,
+#network,
+#backlight,
+#keyboard-state,
+#language,
+#battery,
+#clock,
+#tray {
+    font-weight: normal;
+    background-color: @primary;
+    color: @secondary;
+    padding-right: 8px;
+}

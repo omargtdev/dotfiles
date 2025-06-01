@@ -105,3 +105,10 @@ if [ -d "$HOME/.shell" ]; then
         . "$HOME/.shell/$f"
     done
 fi
+
+if command -v uwsm &> /dev/null; then
+    if uwsm check may-start &> /dev/null && uwsm select; then
+        exec uwsm start default
+    fi
+fi
+
