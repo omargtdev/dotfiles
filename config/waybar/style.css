@@ -26,6 +26,15 @@ window#waybar.empty {
     color: @secondary;
 }
 
+#workspaces button:hover {
+  box-shadow: none;
+  text-shadow: none;
+  background: none;
+  transition: none;
+  border-color: transparent;
+}
+
+
 #pulseaudio {
     padding-left: 8px;
 }
