@@ -1,0 +1,50 @@
+#!/bin/env python
+
+from os import path
+import shutil
+import subprocess
+import json
+import sys
+
+ERROR_EXIT_CODE = 1
+
+def print_help():
+    filename = path.basename(__file__)
+
+    help = f"""
+Usage: {filename} <azure-sql-server-name> <azure-sql-database-name>
+
+Example:
+    {filename} my-server-sql MyDatabaseDb
+    """
+    print(help)
+
+if shutil.which("sqlcmd") is None:
+    print("Sqlcmd executable was not found")
+    sys.exit(ERROR_EXIT_CODE)
+
+
+if shutil.which("az") is None:
+    print("Azure cli executable was not found")
+    sys.exit(ERROR_EXIT_CODE)
+
+
+content = subprocess.run(["az", "account", "show"], capture_output=True)
+
+try:
+    azure_user_info = json.loads(content.stdout)
+except:
+    print("Something went wrong when trying to read your azure info. Check if you are logged into azure cli.")
+    sys.exit(ERROR_EXIT_CODE)
+
+if len(sys.argv) != 3:
+    print_help()
+    sys.exit(ERROR_EXIT_CODE)
+
+server_name = sys.argv[1]
+database_name = sys.argv[2]
+
+username = azure_user_info["user"]["name"]
+
+print(f"Logging as {username}")
+subprocess.run(["sqlcmd", "-S", f"{server_name}.database.windows.net", "-d", database_name, "-G"])
