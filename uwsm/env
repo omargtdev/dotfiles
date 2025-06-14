@@ -1,4 +1,0 @@
-export XCURSOR_SIZE=24
-export QT_QPA_PLATFORMTHEME=qt6ct
-export GDK_BACKEND=wayland
-export XDG_SESSION_TYPE=wayland
