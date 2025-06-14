@@ -8,4 +8,4 @@ result-spacing = 25
 num-results = 5
 font = CaskaydiaMono Nerd Font
 font-size = 15
-brackground-color = #000A
+background-color = #000C
