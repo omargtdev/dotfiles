@@ -55,3 +55,8 @@ alias free="free -mt"
 alias tx='tmux'
 alias txs="$HOME/.config/tmux/scripts/tmux-session"
 alias tx-delete-all="$HOME/.config/tmux/scripts/tmux-delete-session"
+
+# Kubectl
+if [ -x "$(command -v kubectl)" ]; then
+    alias k='kubectl'
+fi
