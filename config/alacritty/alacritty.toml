@@ -1,6 +1,6 @@
 [font]
 normal = { family = "CaskaydiaMono Nerd Font", style = "Regular" }
-size = 11
+size = 14
 
 [window]
 padding = { x = 1, y = 0 }

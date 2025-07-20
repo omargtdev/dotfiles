@@ -1,5 +1,5 @@
 [init]
-    defaultBranch = main
+	defaultBranch = main
 [user]
     email = omargtdev@gmail.com
     name = Omar Gutierrez
@@ -45,3 +45,5 @@
     helper = /$HOME/.dotnet/tools/git-credential-manager
 [credential "https://dev.azure.com"]
     useHttpPath = true
+[fetch]
+	prune = true
