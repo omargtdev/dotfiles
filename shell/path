@@ -8,6 +8,10 @@ if ! [[ "$PATH" =~ "/usr/local/bin:" ]]; then
     PATH="/usr/local/bin:$PATH"
 fi
 
+if ! [[ "$PATH" =~ "/usr/bin" ]]; then                     
+    PATH="$PATH:/usr/bin"
+fi
+
 # User specific environment
 if ! [[ "$PATH" =~ "$HOME/.local/bin" ]]; then
     PATH="$HOME/.local/bin:$PATH"
