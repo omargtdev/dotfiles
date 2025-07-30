@@ -59,4 +59,6 @@ alias tx-delete-all="$HOME/.config/tmux/scripts/tmux-delete-session"
 # Kubectl
 if [ -x "$(command -v kubectl)" ]; then
     alias k='kubectl'
+    alias ka='kubectl api-resources'
+    alias kan='kubectl api-resources --namespaced=true'
 fi
