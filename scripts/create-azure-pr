@@ -1,0 +1,50 @@
+#!/bin/bash
+
+show_help() {
+    echo "Usage: $(basename $0) <project-name> <repository-name-or-id> <title> [<target-branch>] [<source-branch>]"
+    echo ""
+    echo "Create a PR in Azure DevOps."
+    echo ""
+    echo ""
+    echo "Arguments:"
+    echo "  <project>                 Project name of the repository."
+    echo "  <repository-name-or-id>   Name or ID of the repository."
+    echo "  <title>                   Title of the PR."
+    echo "  <target-branch>           (Optional) Target branch of the repository. Default: master"
+    echo "  <source-branch>           (Optional) Source branch of the repository. Default: current branch"
+    echo ""
+}
+
+project=$1
+repository=$2
+title=$3
+target_branch=$4
+source_branch=$5
+
+if [ $# -ne 3 ]; then
+    show_help
+    exit 1
+fi
+
+if [[ -z "$target_branch" ]]; then
+    target_branch=master
+fi
+
+if [[ -z "$source_branch" ]]; then
+    source_branch=$(git rev-parse --abbrev-ref HEAD)
+fi
+
+# TODO: Save error to show
+result=$(az repos pr create -p "$project" -r "$repository" -s "$source_branch" -t "$target_branch" --title "$title")
+
+if [ $? -ne 0 ]; then
+    echo "Error creating PR"
+    exit 1
+fi
+
+# TODO: make this with other command (like grep)
+pull_request_id=$(echo $result | jq '.pullRequestId')
+base_url=$(echo $result | jq '.repository.webUrl' | tr -d '"')
+
+echo ""
+echo "PR: $base_url/pullrequest/$pull_request_id"
