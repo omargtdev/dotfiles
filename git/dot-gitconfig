@@ -3,9 +3,6 @@
 [user]
     email = omargtdev@gmail.com
     name = Omar Gutierrez
-# Current company
-[includeIf "gitdir:~/repos/juntoz/**/"]
-    path = ~/repos/juntoz/.gitconfig
 [core]
     editor = nvim
 [alias]
@@ -35,15 +32,9 @@
     hunk-header-file-style = red
     hunk-header-line-number-style = "#067a00"
     hunk-header-style = file line-number syntax
-[credential "https://github.com"]
-    helper = !gh auth git-credential
-[credential "https://gist.github.com"]
-    helper = !gh auth git-credential
-[credential]
-    credentialStore = gpg
-    helper = 
-    helper = /$HOME/.dotnet/tools/git-credential-manager
-[credential "https://dev.azure.com"]
-    useHttpPath = true
-[fetch]
-	prune = true
+# For store credentials 
+[include]
+    path = ~/.gitconfig.local
+# Current company
+[includeIf "gitdir:~/repos/work/**/"]
+    path = ~/repos/work/.gitconfig
