@@ -11,6 +11,8 @@
     s = status -sb
     c = commit -m
     bn = rev-parse --abbrev-ref HEAD
+    sw = switch
+    swc = switch -c
 # Install delta for this features
 # Repo : https://github.com/dandavison/delta 
 [core]
