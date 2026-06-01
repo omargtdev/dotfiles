@@ -1,4 +1,7 @@
-#!/usr/bin/env python
+#!/bin/sh
+'''exec' python3 "$0" "$@" || exec python "$0" "$@" # '''
+# Polyglot shebang: tries python3 first, falls back to python.
+# This handles systems where the Python 3 binary is named 'python' instead of 'python3'.
 
 from os import path
 import shutil
