@@ -49,3 +49,6 @@ if [ -d "$CUSTOM_SCRIPTS_DIR" ]; then
     done
 fi
 unset CUSTOM_SCRIPTS_DIR
+
+# Machine-specific configuration
+[[ -f ~/.bashrc.local ]] && source ~/.bashrc.local

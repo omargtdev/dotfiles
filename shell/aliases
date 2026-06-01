@@ -60,10 +60,8 @@ alias tx-delete-all="$HOME/.config/tmux/scripts/tmux-delete-session"
 # Kubectl
 if [ -x "$(command -v kubectl)" ]; then
     alias k='kubectl'
-
     alias k-contexts='kubectl config get-contexts'
     alias k-use='kubectl config use-context'
     alias k-current='kubectl config current-context'
-
     alias k-pods='kubectl get pods'
 fi

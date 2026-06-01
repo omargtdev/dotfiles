@@ -50,3 +50,10 @@ TMUX_SCRIPTS_DIR="$HOME/.config/tmux/scripts"
 if ! [[ "$PATH" =~ "$TMUX_SCRIPTS_DIR:" && -d "$TMUX_SCRIPTS_DIR" ]]; then
     PATH="$TMUX_SCRIPTS_DIR:$PATH"
 fi
+
+if ! [[ "$PATH" =~ "$HOME/.azure/bin:" ]]; then
+    PATH="$HOME/.azure/bin:$PATH"
+fi
+
+# opencode
+export PATH=$HOME/.opencode/bin:$PATH
