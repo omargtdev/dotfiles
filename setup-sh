@@ -23,7 +23,11 @@ case $shell_to_setup in
     zsh)
 	if [ -f ~/.zshrc ]; then
 	    mv ~/.zshrc ~/.zshrc.bk
-            echo "Backup made of .zshrc -> .zshrc.bk (file)"
+        echo "Backup made of .zshrc -> .zshrc.bk (file)"
+	fi
+	if [ ! -f ~/.zshrc.local ]; then
+	    touch zsh/dot-zshrc.local
+	    echo "Created empty zsh/dot-zshrc.local for machine-specific config"
 	fi
 	stow --dotfiles zsh
     ;;
@@ -35,9 +39,13 @@ case $shell_to_setup in
 
 	for i in $bash_content; do
 	    mv $i ~/.bash.bk
-            echo "Backup made of $i -> ~/.bash.bk"
+        echo "Backup made of $i -> ~/.bash.bk"
 	done
 
+	if [ ! -f ~/.bashrc.local ]; then
+	    touch bash/dot-bashrc.local
+	    echo "Created empty bash/dot-bashrc.local for machine-specific config"
+	fi
 	stow --dotfiles bash
     ;;
     *)
