@@ -1,29 +1,37 @@
 #!/bin/bash
 
 show_help() {
-    echo "Usage: $(basename $0) <project-name> <repository-name-or-id> <title> [<target-branch>] [<source-branch>]"
+    echo "Usage: $(basename $0) <title> [<project>] [<repository-name-or-id>] [<target-branch>] [<source-branch>]"
     echo ""
     echo "Create a PR in Azure DevOps."
     echo ""
     echo ""
     echo "Arguments:"
-    echo "  <project>                 Project name of the repository."
-    echo "  <repository-name-or-id>   Name or ID of the repository."
-    echo "  <title>                   Title of the PR."
+    echo "  <title>                   Title of the PR. (Required)"
+    echo "  <project>                 (Optional) Project name of the repository. Default: Juntoz"
+    echo "  <repository-name-or-id>   (Optional) Name or ID of the repository. Default: current directory name"
     echo "  <target-branch>           (Optional) Target branch of the repository. Default: master"
     echo "  <source-branch>           (Optional) Source branch of the repository. Default: current branch"
     echo ""
 }
 
-project=$1
-repository=$2
-title=$3
+title=$1
+project=$2
+repository=$3
 target_branch=$4
 source_branch=$5
 
-if [ $# -ne 3 ]; then
+if [ $# -lt 1 ]; then
     show_help
     exit 1
+fi
+
+if [[ -z "$project" ]]; then
+    project=Juntoz
+fi
+
+if [[ -z "$repository" ]]; then
+    repository=$(basename "$(pwd)")
 fi
 
 if [[ -z "$target_branch" ]]; then
