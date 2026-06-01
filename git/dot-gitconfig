@@ -34,9 +34,6 @@
     hunk-header-file-style = red
     hunk-header-line-number-style = "#067a00"
     hunk-header-style = file line-number syntax
-# For store credentials 
+# For extra configuration (auth, other settings)
 [include]
     path = ~/.gitconfig.local
-# Current company
-[includeIf "gitdir:~/repos/work/**/"]
-    path = ~/repos/work/.gitconfig
