@@ -1,0 +1,130 @@
+#!/usr/bin/env python3
+"""
+convert_to_pdf.py
+-----------------
+Convert .pptx or .docx files to PDF using LibreOffice.
+
+Usage:
+    python convert_to_pdf.py file1.pptx file2.docx ...
+    python convert_to_pdf.py *.pptx *.docx
+    python convert_to_pdf.py --dir /path/to/folder
+    python convert_to_pdf.py --dir /path/to/folder --out /path/to/output
+
+Requirements:
+    LibreOffice must be installed.
+    Install on Ubuntu/Debian:  sudo apt install libreoffice
+    Install on macOS:          brew install --cask libreoffice
+    Install on Windows:        https://www.libreoffice.org/download/
+"""
+
+import argparse
+import subprocess
+import sys
+from pathlib import Path
+
+SUPPORTED_EXTENSIONS = {".pptx", ".ppt", ".docx", ".doc"}
+
+
+def find_libreoffice() -> str:
+    """Locate the LibreOffice binary."""
+    candidates = ["libreoffice", "soffice"]
+    for name in candidates:
+        result = subprocess.run(["which", name], capture_output=True, text=True)
+        if result.returncode == 0:
+            return result.stdout.strip()
+    sys.exit(
+        "❌  LibreOffice not found. Install it and make sure it's on your PATH.\n"
+        "    Ubuntu/Debian: sudo apt install libreoffice\n"
+        "    macOS:         brew install --cask libreoffice\n"
+        "    Windows:       https://www.libreoffice.org/download/"
+    )
+
+
+def convert_file(source: Path, output_dir: Path, libreoffice: str) -> bool:
+    """Convert a single file to PDF. Returns True on success."""
+    if source.suffix.lower() not in SUPPORTED_EXTENSIONS:
+        print(f"⚠️  Skipping (unsupported format): {source}")
+        return False
+
+    print(f"🔄  Converting: {source.name} → {source.stem}.pdf")
+
+    cmd = [
+        libreoffice,
+        "--headless",
+        "--convert-to", "pdf",
+        "--outdir", str(output_dir),
+        str(source),
+    ]
+
+    result = subprocess.run(cmd, capture_output=True, text=True)
+
+    if result.returncode == 0:
+        out_path = output_dir / (source.stem + ".pdf")
+        print(f"✅  Saved: {out_path}")
+        return True
+    else:
+        print(f"❌  Failed: {source.name}")
+        print(f"    {result.stderr.strip()}")
+        return False
+
+
+def main():
+    parser = argparse.ArgumentParser(
+        description="Convert .pptx / .docx files to PDF using LibreOffice."
+    )
+    parser.add_argument(
+        "files",
+        nargs="*",
+        help="One or more .pptx / .docx files to convert.",
+    )
+    parser.add_argument(
+        "--dir",
+        type=Path,
+        default=None,
+        help="Convert all supported files in this directory.",
+    )
+    parser.add_argument(
+        "--out",
+        type=Path,
+        default=None,
+        help="Output directory for PDF files (default: same as each source file).",
+    )
+    args = parser.parse_args()
+
+    libreoffice = find_libreoffice()
+
+    # Collect files
+    sources: list[Path] = []
+
+    for f in args.files:
+        p = Path(f)
+        if not p.exists():
+            print(f"⚠️  File not found: {p}")
+        else:
+            sources.append(p)
+
+    if args.dir:
+        if not args.dir.is_dir():
+            sys.exit(f"❌  Not a directory: {args.dir}")
+        for ext in SUPPORTED_EXTENSIONS:
+            sources.extend(args.dir.glob(f"*{ext}"))
+            sources.extend(args.dir.glob(f"*{ext.upper()}"))
+
+    if not sources:
+        sys.exit("❌  No files to convert. Pass file paths or use --dir.")
+
+    # Convert
+    succeeded, failed = 0, 0
+    for source in sorted(set(sources)):
+        output_dir = args.out if args.out else source.parent
+        output_dir.mkdir(parents=True, exist_ok=True)
+        if convert_file(source, output_dir, libreoffice):
+            succeeded += 1
+        else:
+            failed += 1
+
+    print(f"\n📊  Done — {succeeded} converted, {failed} failed.")
+
+
+if __name__ == "__main__":
+    main()
