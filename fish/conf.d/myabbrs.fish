@@ -15,3 +15,9 @@ else
     abbr --add v vim
 end
 
+# Others
+abbr --add pt papertrail
+
+# Docker
+#abbr --add redis-cli docker run -e 'REDISCLI_AUTH=$REDISCLI_AUTH' -it --rm redis  redis-cli
+abbr --add psql docker run -ti --rm alpine/psql
