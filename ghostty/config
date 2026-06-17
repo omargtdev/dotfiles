@@ -1,7 +1,6 @@
-theme = Nvim Dark
-font-size = 15
+theme = Apple System Colors
+font-size = 18
 mouse-hide-while-typing = true
 macos-option-as-alt = left
-window-decoration = auto
-background-opacity = .7
-background-blur-radius = 40
+background-opacity = .9
+background-blur = true
