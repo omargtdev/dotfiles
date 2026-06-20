@@ -17,6 +17,7 @@ end
 
 # Others
 abbr --add pt papertrail
+abbr --add reload exec fish
 
 # Docker
 #abbr --add redis-cli docker run -e 'REDISCLI_AUTH=$REDISCLI_AUTH' -it --rm redis  redis-cli
