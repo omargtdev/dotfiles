@@ -81,8 +81,15 @@
             "opencode-go/glm-5.1",
             "opencode-go/qwen3.7-max"
         ]
+    },
+    "sisyphus-junior": {
+      "model": "opencode-go/kimi-k2.6",
+      "fallback_models": [
+        "opencode-go/minimax-m3",
+        "opencode-go/minimax-m2.7",
+        "opencode-go/qwen3.7-max"
+      ]
     }
-    //"sisyphus-junior": {}
   },
   "categories": {
     "visual-engineering": {
