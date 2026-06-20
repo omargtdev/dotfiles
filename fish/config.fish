@@ -1,16 +1,18 @@
-if status is-interactive
 # Commands to run in interactive sessions can go here
-  fish_add_path /opt/homebrew/bin
-  fish_add_path ~/.local/bin
-  fish_add_path ~/.opencode/bin
+if status is-interactive
+    fish_add_path /opt/homebrew/bin
+    fish_add_path ~/.local/bin
+    fish_add_path ~/.opencode/bin
+    fish_add_path ~/.dotnet
+    fish_add_path ~/.dotnet/tools
 
-  fish_add_path ~/.dotnet
-  fish_add_path ~/.dotnet/tools
+    if type -q rbenv
+        rbenv init - --no-rehash fish | source
+    end
 
-  if type -q rbenv
-    rbenv init - --no-rehash fish | source
-  end
+    # bun
+    set --export BUN_INSTALL "$HOME/.bun"
+    set --export PATH $BUN_INSTALL/bin $PATH
+
+    set -gx OMO_SEND_ANONYMOUS_TELEMETRY 0
 end
-
-# opencode
-fish_add_path /home/linuxero/.opencode/bin
