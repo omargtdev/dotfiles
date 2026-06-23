@@ -1,4 +1,4 @@
-function azfirewall --description 'Add current IP and a calculated range to Azure SQL firewall'
+function az-sql-firewall --description 'Add current IP and a calculated range to Azure SQL firewall'
     # Validate that at least the 2 required parameters are passed
     if test (count $argv) -lt 2
         echo "Error: Missing required parameters."
