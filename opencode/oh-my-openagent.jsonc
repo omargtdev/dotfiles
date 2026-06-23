@@ -11,15 +11,15 @@
         ]
     },
     // GPT-only
-    // "hephaestus": {
-    //     "model": "opencode/gpt-5.5", 
-    //     "fallback_models": [
-    //         "opencode-go/deepseek-v4-pro",
-    //         "opencode-go/kimi-k2.7-code",
-    //         "opencode-go/qwen3.7-max"
-    //     ],
-    //     "allow_non_gpt_model": true
-    // },
+    "hephaestus": {
+        "model": "opencode/gpt-5.5", 
+        "fallback_models": [
+            "opencode-go/deepseek-v4-pro",
+            "opencode-go/kimi-k2.7-code",
+            "opencode-go/qwen3.7-max"
+        ],
+        "allow_non_gpt_model": true
+    },
     "prometheus": {
         "model": "opencode-go/glm-5.2",
         "fallback_models": [
