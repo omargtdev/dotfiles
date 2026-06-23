@@ -2,4 +2,3 @@ bash/dot-bash/bash_history
 *.local
 
 fish/fish_variables
-fish/functions/fisher.fish
