@@ -1,4 +1,6 @@
 bash/dot-bash/bash_history
 *.local
+.DS_Store
 
 fish/fish_variables
+
