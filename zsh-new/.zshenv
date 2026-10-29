@@ -32,6 +32,10 @@ export GPG_TTY=$(tty)
 # Personal binaries/scripts
 export PATH="$HOME/.local/bin:$PATH"
 
+# Homebrew
+[[ -d "/opt/homebrew/bin" ]] && path+=("/opt/homebrew/bin") # MacOS
+[[ -d "/home/linuxbrew/.linuxbrew/bin" ]] && path+=("/home/linuxbrew/.linuxbrew/bin") # Linux
+
 # --------------- Pager ---------------
 if command -v batcat >/dev/null 2>&1; then
     export MANPAGER="batcat -l man -p"
