@@ -7,6 +7,7 @@ abbr --add k kubectl
 abbr --add k-contexts kubectl config get-contexts
 abbr --add k-use kubectl config use-context
 abbr --add k-current kubectl config current-context
+abbr --add k-set-ns kubectl config set-context --current --namespace
 
 # Editor
 if command -q nvim
