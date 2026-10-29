@@ -1,8 +1,11 @@
 local fd_command="fd"
 local bat_command="bat"
 
-if dpkg-vendor --derives-from Debian; then
+if command -v fdfind >/dev/null 2>&1; then
     fd_command="fdfind"
+fi
+
+if command -v batcat >/dev/null 2>&1; then
     bat_command="batcat"
 fi
 
