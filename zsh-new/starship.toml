@@ -1,20 +1,33 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
+format = """
+$git_branch\
+$git_commit \
+$azure\
+$kubernetes\
+$cmd_duration\
+$line_break\
+$directory\
+$character"""
+
+[cmd_duration]
+min_time = 1000
+
+[line_break]
+disabled = false
+
 [azure]
-symbol = "☁️ "
+symbol = " "
+disabled = false
+format = '[$symbol($username)]($style) '
 
-[battery]
-full_symbol = "• "
-charging_symbol = "⇡ "
-discharging_symbol = "⇣ "
-unknown_symbol = "❓ "
-empty_symbol = "❗ "
+[git_branch]
+format = '[$symbol$branch(:$remote_branch)]($style)'
 
-[erlang]
-symbol = "ⓔ "
+[git_commit]
+format = '[\($hash$tag\)]($style)'
 
-[nodejs]
-symbol = "[⬢](bold green) "
-
-[pulumi]
-symbol = "🧊 "
+[kubernetes]
+symbol = " "
+disabled = false
+format = '[$symbol$context(\($namespace\))]($style) '
