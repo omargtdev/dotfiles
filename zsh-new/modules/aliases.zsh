@@ -13,7 +13,7 @@ alias k-current='kubectl config current-context'
 alias k-set-ns='kubectl config set-context --current --namespace'
 
 # Tools
-alias ls='eza'
+alias ls='eza --icons'
 
 local bat_command='bat'
 if command -v batcat >/dev/null 2>&1; then
