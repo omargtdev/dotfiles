@@ -1,5 +1,5 @@
 font-family = "Agave Nerd Font Mono"
-theme = "Apple System Colors"
+theme = Nord
 font-size = 20
 mouse-hide-while-typing = true
 macos-option-as-alt = left
