@@ -20,6 +20,7 @@ if command -v batcat >/dev/null 2>&1; then
     bat_command='batcat'
 fi
 alias cat=$bat_command
+alias catraw="$bat_command --plain --paging never"
 
 if command -v nvim >/dev/null 2>&1; then
     alias v='nvim'
@@ -33,3 +34,6 @@ fi
 alias txs='$XDG_CONFIG_HOME/tmux/scripts/tmux-session'
 alias tx-delete-all='$XDG_CONFIG_HOME/tmux/scripts/tmux-delete-session'
 
+# Azure
+az-set-rg() { az configure --defaults group=$1 }
+alias az-rg='az configure --list-defaults -o tsv --query "[?name=='\''group'\''].value"'
