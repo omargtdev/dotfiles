@@ -52,6 +52,15 @@ zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 
 # =============================================
+# Homebrew
+# =============================================
+if [[ -f "/opt/homebrew/bin/brew" ]]; then # MacOS
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+elif [[ -f "/home/linuxbrew/.linuxbrew/bin/brew" ]]; then # Linux
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+fi
+
+# =============================================
 # Fuzzy finder
 # =============================================
 
